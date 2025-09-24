@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Statistics</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        
+        .stat-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+            height: 140px;
+            transition: transform 0.2s ease;
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            background: #fff3e0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ff9800;
+        }
+        
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            font-size: 12px;
+            color: #6c757d;
+            padding: 4px 8px;
+        }
+        
+        .dropdown-toggle:after {
+            font-size: 10px;
+        }
+        
+        .dropdown-menu {
+            font-size: 12px;
+            min-width: 120px;
+        }
+        
+        .stat-title {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 5px;
+        }
+        
+        .stat-change {
+            font-size: 12px;
+            color: #28a745;
+            font-weight: 500;
+        }
+        
+        .stat-change.negative {
+            color: #dc3545;
+        }
+        
+        .icon-members { color: #17a2b8; background: #e1f7fa; }
+        .icon-orders { color: #28a745; background: #e8f5e9; }
+        .icon-revenue { color: #ffc107; background: #fff8e1; }
+        .icon-growth { color: #6f42c1; background: #f3e5f5; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row g-4">
+            <!-- Members Box -->
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-members">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 0)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 0)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 0)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Members</div>
+                    <div class="stat-number">1848</div>
+                    <div class="stat-change">+12.5% from last week</div>
+                </div>
+            </div>
+            
+            <!-- Orders Box -->
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-orders">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Month
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 1)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 1)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 1)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Orders</div>
+                    <div class="stat-number">2,547</div>
+                    <div class="stat-change">+8.2% from last month</div>
+                </div>
+            </div>
+            
+            <!-- Revenue Box -->
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-revenue">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Year
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 2)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 2)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 2)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Revenue</div>
+                    <div class="stat-number">$89,432</div>
+                    <div class="stat-change">+15.7% from last year</div>
+                </div>
+            </div>
+            
+            <!-- Growth Box -->
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-growth">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 3)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 3)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updatePeriod(this, 3)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Growth</div>
+                    <div class="stat-number">24.3%</div>
+                    <div class="stat-change">+3.1% from last week</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Sample data for different time periods
+        const statsData = [
+            {
+                title: "Members",
+                week: { number: "1848", change: "+12.5% from last week" },
+                month: { number: "7,293", change: "+18.2% from last month" },
+                year: { number: "45,672", change: "+25.4% from last year" }
+            },
+            {
+                title: "Orders",
+                week: { number: "547", change: "+5.8% from last week" },
+                month: { number: "2,547", change: "+8.2% from last month" },
+                year: { number: "28,394", change: "+22.1% from last year" }
+            },
+            {
+                title: "Revenue",
+                week: { number: "$12,847", change: "+7.3% from last week" },
+                month: { number: "$89,432", change: "+15.7% from last month" },
+                year: { number: "$567,890", change: "+28.9% from last year" }
+            },
+            {
+                title: "Growth",
+                week: { number: "24.3%", change: "+3.1% from last week" },
+                month: { number: "31.7%", change: "+5.4% from last month" },
+                year: { number: "42.8%", change: "+12.6% from last year" }
+            }
+        ];
+
+        function updatePeriod(element, boxIndex) {
+            const period = element.textContent.toLowerCase().replace('this ', '');
+            const box = element.closest('.stat-box');
+            const dropdown = box.querySelector('.dropdown-toggle');
+            const numberElement = box.querySelector('.stat-number');
+            const changeElement = box.querySelector('.stat-change');
+            
+            // Update dropdown text
+            dropdown.textContent = element.textContent;
+            
+            // Update stats based on period
+            const data = statsData[boxIndex][period];
+            numberElement.textContent = data.number;
+            changeElement.textContent = data.change;
+            
+            // Add animation effect
+            numberElement.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                numberElement.style.transform = 'scale(1)';
+            }, 200);
+        }
+
+        // Add smooth transitions
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(num => {
+                num.style.transition = 'transform 0.2s ease';
+            });
+        });
+    </script>
+</body>
+</html>

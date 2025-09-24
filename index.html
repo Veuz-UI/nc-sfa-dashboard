@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports For All - Dashboard</title>
+
+    <link rel="icon" href="assets/img/logos/sports-for-all-small-logo.png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="#"><img src="assets/img/logos/sports-for-all-logo.png" alt="Sports For All" class="main-logo"></a>
+            <a href="#"><img src="assets/img/logos/sports-for-all-small-logo.png" alt="S" class="small-logo"></a>
+        </div>
+        
+        <nav class="nav flex-column">
+            <a class="nav-link active" href="#dashboard">
+                <img src="assets/img/dashboard/dashboard.svg" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link" href="#membership">
+                <img src="assets/img/dashboard/membership.svg" alt="">
+                <span>Membership</span>
+            </a>
+            <a class="nav-link" href="#registration">
+                <img src="assets/img/dashboard/member-registration.svg" alt="">
+                <span>Member Registration</span>
+            </a>
+            <a class="nav-link" href="#subscriptions">
+               <img src="assets/img/dashboard/subscription.svg" alt="">
+                <span>Subscriptions</span>
+            </a>
+            <a class="nav-link" href="#roles">
+                <img src="assets/img/dashboard/roles.svg" alt="">
+                <span>Roles</span>
+            </a>
+            <a class="nav-link" href="#locations">
+                <img src="assets/img/dashboard/location.svg" alt="">
+                <span>Locations</span>
+            </a>
+            <a class="nav-link " href="#reports">
+                <img src="assets/img/dashboard/reports.svg" alt="">
+                <span>Reports</span>
+            </a>
+            
+            <a class="nav-link" href="#users">
+                <img src="assets/img/dashboard/users.svg" alt="">
+                <span>Users</span>
+            </a>
+            <a class="nav-link" href="#settings">
+              <img src="assets/img/dashboard/settings.svg" alt="">
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div style="position: absolute; bottom: 20px; width: 100%;">
+            <a class="nav-link log-out" href="#logout" style="color: var(--primary-color);">
+                <img src="assets/img/dashboard/log-out.svg" alt="">
+                <span>Log Out</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="topbar" id="topbar">
+        <div class="d-flex align-items-center">
+            <button class="hamburger" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+        </div>
+        
+        
+        
+        <div class="user-actions">
+            <div class="search-box">
+            <input type="text" placeholder="Search..." id="searchInput">
+            <i class="fi fi-rr-search"></i>
+        </div>
+        <button id="screenshotBtn" title="Take Screenshot">
+    <i class="fi fi-rr-camera"></i>
+  </button>
+            <button title="Notifications">
+                <i class="fas fa-bell"></i>
+            </button>
+            
+            
+            <!-- Profile Dropdown -->
+  <div class="dropdown">
+    <button class="profile-btn" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false" title="Profile">
+      <img src="assets/img/dashboard/user.png" alt="User">
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+      <li><a class="dropdown-item user-list" href="profile.html"><i class="fi fi-rr-user"></i><span> Profile</span></a></li>
+      <li><a class="dropdown-item user-list" href="change-password.html"><i class="fi fi-rr-lock"></i><span> Change Password</span></a></li>
+      <li><a class="dropdown-item user-list" href="logout.html"><i class="fi fi-rr-sign-out-alt"></i><span> Logout</span></a></li>
+    </ul>
+  </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb-bar">
+    <!-- Left: Breadcrumb -->
+    <div class="breadcrumb-left">
+      <i class="fi fi-rr-house-chimney"></i>
+      <span>Dashboard <span>/ Page Name</span></span>
+    </div>
+
+    <!-- Right: Language Dropdown -->
+    <div class="lang-dropdown dropdown">
+      <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/img/dashboard/language.svg" alt=""> EN
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">EN</a></li>
+        <li><a class="dropdown-item" href="#">AR</a></li>
+      </ul>
+    </div>
+  </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+         
+        <div class="row g-3">
+           
+            <div class="col-lg-6 col-xl-3 col-md-6 col-12">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-users">
+                            <img src="assets/img/dashboard/total-users.svg" alt="">
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Total Users</div>
+                    <div class="d-flex gap-2 align-items-end">
+                    <div class="stat-number">93690.00</div>
+                    <div class="stat-change">+0.00%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Member Box -->
+            <div class="col-lg-6 col-xl-3 col-md-6 col-12">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-member">
+                            <img src="assets/img/dashboard/members.svg" alt="">
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Member</div>
+                    <div class="d-flex gap-2 align-items-end">
+                    <div class="stat-number">1848</div>
+                    <div class="stat-change">+0.00%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Potential Member Box -->
+            <div class="col-lg-6 col-xl-3 col-md-6 col-12">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-potential">
+                            <img src="assets/img/dashboard/potential.svg" alt="">
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="stat-title">Potential Member</div>
+                    <div class="d-flex gap-2 align-items-end align-items-end">
+                    <div class="stat-number">19371</div>
+                    <div class="stat-change">+0.00%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gender Box -->
+            <div class="col-lg-6 col-xl-3 col-md-6 col-12">
+                <div class="stat-box">
+                    <div class="stat-header">
+                        <div class="stat-icon icon-gender">
+                            <img src="assets/img/dashboard/gender.svg" alt="">
+                        </div>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="gender-section">
+                        <div class="stat-title">Gender</div>
+                        <div class="gender-item">
+                            <div class="gender-label">Male</div>
+                            <div class="stat-number">0</div>
+                        </div>
+                        <div class="gender-item">
+                            <div class="gender-label">Female</div>
+                            <div class="d-flex gap-2 align-items-end">
+                            <div class="stat-number">0</div>
+                            <div class="stat-change">+0.00%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-lg-12 col-xl-8">
+                <div class="row g-3">
+                    <div class="col-lg-12 col-xl-5">
+                        
+                     <div class="stat-box  stat-chart"> 
+                        <div class="heading-section">
+                        <div class="d-flex justify-content-between">
+                 <h1 class="chart-title">Active/Inactive registrations</h1>
+                 <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                        </div>
+        
+        <div class="legend-container">
+            <div class="legend-item">
+                <div class="legend-dot active"></div>
+                <span>Active</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot inactive"></div>
+                <span>Inactive</span>
+            </div>
+        </div>
+</div>
+        <div class="d-flex justify-content-center align-items-center">
+        <div id="chart"></div>
+        </div>
+            </div> 
+                    </div>
+                    <div class="col-lg-12 col-xl-7">
+                        <div class="stat-box  stat-chart">
+                            <div class="heading-section">
+                    <div class="card-header bg-white border-0 d-flex justify-content-between align-items-start">
+                        <h5 class="chart-title">Memberships per location</h5>
+                        <div class="d-flex align-items-center">
+                            <span class="legend-dot me-2"></span>
+                            <small class="text-muted">Members</small>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-muted fw-normal" style="font-size: 12px;">Source</th>
+                                        <th class="text-uppercase text-muted fw-normal" style="font-size: 12px;">Progress Bar</th>
+                                        <th class="text-uppercase text-muted fw-normal text-end" style="font-size: 12px;">Members</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="source-text">Prince Sultan Complex, UAE</td>
+                                        <td>
+                                            <div class="progress progress-custom">
+                                                <div class="progress-bar progress-bar-custom" style="width: 0%" data-width="50"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end fw-semibold">244</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="source-text">North Intermediate School, KP</td>
+                                        <td>
+                                            <div class="progress progress-custom">
+                                                <div class="progress-bar progress-bar-custom" style="width: 0%" data-width="34.3"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end fw-semibold">4453</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="source-text">Tort Big Island, RI</td>
+                                        <td>
+                                            <div class="progress progress-custom">
+                                                <div class="progress-bar progress-bar-custom" style="width: 0%" data-width="43"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end fw-semibold">555</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="source-text">Hammond Bio Aid Arena, FM</td>
+                                        <td>
+                                            <div class="progress progress-custom">
+                                                <div class="progress-bar progress-bar-custom" style="width: 0%" data-width="100"></div>
+                                            </div>
+                                        </td>
+                                        <td class="text-end fw-semibold">12969</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="col-lg-12 col-xl-7">
+                        <div class="stat-box  stat-chart">
+                            <div class="heading-section">
+                            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-start">
+                            <div class="chart-title">Age Group</div>
+        <div class="legend-custom">
+            <div class="legend-item">
+                <div class="legend-dot male"></div>
+                <span>Male</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot female"></div>
+                <span>Female</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot other"></div>
+                <span>Other</span>
+            </div>
+        </div>
+        </div>
+</div>
+        <div id="chart2"></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-xl-5">
+                        <div class="stat-box stat-chart"> 
+                            <div class="heading-section">
+                            <div class="d-flex justify-content-between">
+                 <h1 class="chart-title">Active/Inactive registrations</h1>
+                 <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                        </div>
+
+                        <div class="legend-custom">
+            <div class="legend-item">
+                <div class="legend-dot annual"></div>
+                <span>Annual</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot monthly"></div>
+                <span>Monthly</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot premium"></div>
+                <span>Premium Monthly</span>
+            </div>
+        </div>
+        </div>
+        
+        <div class="d-flex justify-content-center align-items-center">
+        <div id="chart3"></div>
+        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-4">
+                <div class="row g-3">
+                    <div class="col-lg-6 col-12">
+                        <div class="stat-box">
+                    <div class="card-body p-0">
+                        <div class="school-title">Eighth Intermediate School JU</div>
+                        <div class="school-location">Most Preferred Location</div>
+                        <div class="stats-change positive">+12 %</div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="stat-box">
+                    <div class="card-body p-0">
+                        <div class="school-title">Al-Ghazalah School,HA</div>
+                        <div class="school-location">Most Preferred Location</div>
+                        <div class="stats-change negative">-5 %</div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="stat-box">
+                    <div class="card-body p-0">
+                        <div class="school-title">7168</div>
+                        <div class="school-location">Vaccinated</div>
+                        <div class="stats-change positive">+12 %</div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="stat-box">
+                    <div class="card-body p-0">
+                        <div class="school-title">3765</div>
+                        <div class="school-location">Not Vaccinated</div>
+                        <div class="stats-change negative">-12 %</div>
+                    </div>
+                </div>
+                    </div>
+
+                    <div class="col-12 h-100">
+                        
+                
+                    <div class="stat-box  stat-chart"> 
+                        <div class="heading-section">
+                        <div class="d-flex justify-content-between">
+                 <h1 class="chart-title">Active/Inactive registrations</h1>
+                 <div class="dropdown">
+                            <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                This Week
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Week</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Month</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="updateDropdownText(this)">This Year</a></li>
+                            </ul>
+                        </div>
+                        </div>
+        
+        
+</div>
+        <div class="d-flex justify-content-center align-items-center">
+        <div id="chart4"></div>
+        </div>
+        <ul class="legend-list">
+            <li class="legend-item">
+                <div class="legend-dot green"></div>
+                <div class="legend-text">1 Day - 10 SAR (All Ages)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot red"></div>
+                <div class="legend-text">1 Month - 60 SAR (Children due from 6-15)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot purple"></div>
+                <div class="legend-text">1 Month - 60 SAR (Parents over 18)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot orange"></div>
+                <div class="legend-text">1 Month - 120 SAR (Parents & 2 kids)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot gray"></div>
+                <div class="legend-text">1 Month - 250 SAR (Parents & 3+ kids)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot blue"></div>
+                <div class="legend-text">6 Months - 270 SAR (Parents & 2+ kids)</div>
+            </li>
+            <li class="legend-item">
+                <div class="legend-dot gray"></div>
+                <div class="legend-text">Other</div>
+            </li>
+        </ul>
+            </div> 
+                
+            </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="preview"></div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.0/apexcharts.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
