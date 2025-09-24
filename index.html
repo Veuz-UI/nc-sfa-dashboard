@@ -46,10 +46,22 @@
                 <img src="assets/img/dashboard/location.svg" alt="">
                 <span>Locations</span>
             </a>
-            <a class="nav-link " href="#reports">
-                <img src="assets/img/dashboard/reports.svg" alt="">
-                <span>Reports</span>
-            </a>
+            <!-- Reports with Dropdown -->
+<div class="nav-item">
+    <a class="nav-link dropdown-toggle-nav" href="#reports">
+        <div style="display: flex; align-items: center;">
+            <img src="assets/img/dashboard/reports.svg" alt="">
+            <span>Reports</span>
+        </div>
+        <i class="fi fi-rr-angle-small-right dropdown-icon"></i>
+    </a>
+    <div class="dropdown-menu-nav">
+        <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Attendance Report</span></a>
+        <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Attendance Summary Report</span></a>
+        <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Consolidate Report</span></a>
+        
+    </div>
+</div>
             
             <a class="nav-link" href="#users">
                 <img src="assets/img/dashboard/users.svg" alt="">
@@ -518,5 +530,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.44.0/apexcharts.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
+
+   
 </body>
 </html>

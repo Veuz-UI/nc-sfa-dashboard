@@ -105,6 +105,25 @@
         }
 
 // report dropdown
+ // Reports dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle-nav');
+            const navItem = document.querySelector('.nav-item');
+            
+            if (dropdownToggle && navItem) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItem.classList.toggle('open');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navItem.contains(e.target)) {
+                        navItem.classList.remove('open');
+                    }
+                });
+            }
+        });
 
         
 

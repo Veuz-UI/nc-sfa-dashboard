@@ -8,6 +8,87 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* NEW CSS for Reports Dropdown */
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown-toggle-nav {
+            position: relative;
+        }
+
+        .dropdown-toggle-nav::after {
+            content: '▼';
+            margin-left: auto;
+            font-size: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.open .dropdown-toggle-nav::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu-nav {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #f8f9fa;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .nav-item.open .dropdown-menu-nav {
+            max-height: 200px;
+        }
+
+        .dropdown-item-nav {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px 10px 45px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .dropdown-item-nav:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Collapsed sidebar dropdown styles */
+        .sidebar.collapsed .dropdown-menu-nav {
+            display: none;
+        }
+
+        .sidebar.collapsed .dropdown-toggle-nav::after {
+            display: none;
+        }
+
+        /* Sidebar dropdown styles */
+        .sidebar .dropdown-menu-nav {
+            background-color: #1B1B1B;
+            border-left: none;
+            margin-top: 5px;
+            border-radius: 8px;
+        }
+
+        .sidebar .dropdown-item-nav {
+            padding: 10px 15px;
+            color: var(--text-color);
+            border-radius: 5px;
+            margin: 2px;
+        }
+
+        .sidebar .dropdown-item-nav:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
@@ -47,10 +128,21 @@
                 <img src="assets/img/dashboard/location.svg" alt="">
                 <span>Locations</span>
             </a>
-            <a class="nav-link" href="#reports">
-                <img src="assets/img/dashboard/reports.svg" alt="">
-                <span>Reports</span>
-            </a>
+            
+            <!-- Reports with Dropdown - REPLACED -->
+            <div class="nav-item">
+                <a class="nav-link dropdown-toggle-nav" href="#reports">
+                    <img src="assets/img/dashboard/reports.svg" alt="">
+                    <span>Reports</span>
+                </a>
+                <div class="dropdown-menu-nav">
+                    <a class="dropdown-item-nav" href="#sales-reports">Sales Reports</a>
+                    <a class="dropdown-item-nav" href="#member-reports">Member Reports</a>
+                    <a class="dropdown-item-nav" href="#financial-reports">Financial Reports</a>
+                    <a class="dropdown-item-nav" href="#activity-reports">Activity Reports</a>
+                </div>
+            </div>
+            
             <a class="nav-link" href="#users">
                 <img src="assets/img/dashboard/users.svg" alt="">
                 <span>Users</span>
@@ -214,15 +306,34 @@
                 </div>
             </div>
         </div>
-
-            
-
-            
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <!-- NEW JavaScript for Reports Dropdown -->
+    <script>
+        // Reports dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownToggle = document.querySelector('.dropdown-toggle-nav');
+            const navItem = document.querySelector('.nav-item');
+            
+            if (dropdownToggle && navItem) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItem.classList.toggle('open');
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navItem.contains(e.target)) {
+                        navItem.classList.remove('open');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
