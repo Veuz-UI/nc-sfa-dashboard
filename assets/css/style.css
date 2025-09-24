@@ -135,9 +135,10 @@
         .nav-item.open .dropdown-menu-nav {
             max-height: 200px;
                 position: absolute;
-    left: 75%;
+    left: 60%;
     width: 240px;
     padding: 5px;
+    margin-top: 5px;
         }
 
         .dropdown-item-nav {
@@ -186,8 +187,9 @@
             
             border-radius: 12px;
             position: absolute;
-    left: 75%;
+    left: 60%;
     width: 240px;
+     margin-top: 5px;
         }
 
         .sidebar .dropdown-item-nav {
