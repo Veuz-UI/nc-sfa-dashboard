@@ -22,6 +22,18 @@
    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+  <!-- 👉 Custom Modal -->
+  <div class="custom-modal" id="filterModal">
+    <span class="close-btn" id="closeFilter">&times;</span>
+    <h4>Filter Options</h4>
+    <form>
+      <div><label><input type="checkbox"> Option 1</label></div>
+      <div><label><input type="checkbox"> Option 2</label></div>
+      <div><label><input type="checkbox"> Option 3</label></div>
+      <button type="submit" class="btn btn-primary mt-2">Apply</button>
+    </form>
+  </div>
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     
@@ -519,6 +531,8 @@
 
   <!-- Your custom JS -->
   <script src="assets/js/main.js"></script>
+
+  
 
    
 </body>

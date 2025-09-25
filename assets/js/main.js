@@ -1,136 +1,150 @@
-     // Sidebar toggle functionality
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('mainContent');
-            const topbar = document.getElementById('topbar');
-            const overlay = document.getElementById('sidebarOverlay');
+// ===== SIDEBAR FUNCTIONALITY =====
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const topbar = document.getElementById('topbar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (window.innerWidth <= 991) {
+        // Mobile behavior
+        sidebar?.classList.toggle('show');
+        overlay?.classList.toggle('show');
+    } else {
+        // Desktop behavior
+        sidebar?.classList.toggle('collapsed');
+        mainContent?.classList.toggle('expanded');
+        topbar?.classList.toggle('expanded');
+    }
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    sidebar?.classList.remove('show');
+    overlay?.classList.remove('show');
+}
+
+// Handle window resize
+window.addEventListener('resize', function() {
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const topbar = document.getElementById('topbar');
+    const overlay = document.getElementById('sidebarOverlay');
+    
+    if (window.innerWidth > 991) {
+        // Desktop mode - remove mobile classes
+        sidebar?.classList.remove('show');
+        overlay?.classList.remove('show');
+    } else {
+        // Mobile mode - reset desktop classes
+        sidebar?.classList.remove('collapsed');
+        mainContent?.classList.remove('expanded');
+        topbar?.classList.remove('expanded');
+    }
+});
+
+// ===== NAVIGATION FUNCTIONALITY =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Navigation link functionality
+    document.querySelectorAll('.sidebar .nav-link[data-page]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
             
-            if (window.innerWidth <= 991) {
-                // Mobile behavior
-                sidebar.classList.toggle('show');
-                overlay.classList.toggle('show');
-            } else {
-                // Desktop behavior
-                sidebar.classList.toggle('collapsed');
-                mainContent.classList.toggle('expanded');
-                topbar.classList.toggle('expanded');
+            // Remove active class from all links
+            document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
+            
+            // Add active class to clicked link
+            this.classList.add('active');
+            
+            // Update breadcrumb
+            const pageName = this.querySelector('span')?.textContent || 'Page';
+            const currentPageElement = document.getElementById('currentPage');
+            if (currentPageElement) {
+                currentPageElement.textContent = pageName;
             }
-        }
-
-        // Close sidebar on mobile
-        function closeSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
             
-            sidebar.classList.remove('show');
-            overlay.classList.remove('show');
-        }
-
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            const sidebar = document.getElementById('sidebar');
-            const mainContent = document.getElementById('mainContent');
-            const topbar = document.getElementById('topbar');
-            const overlay = document.getElementById('sidebarOverlay');
-            
-            if (window.innerWidth > 991) {
-                // Desktop mode - remove mobile classes
-                sidebar.classList.remove('show');
-                overlay.classList.remove('show');
-            } else {
-                // Mobile mode - reset desktop classes
-                sidebar.classList.remove('collapsed');
-                mainContent.classList.remove('expanded');
-                topbar.classList.remove('expanded');
-            }
-        });
-
-        // Navigation link functionality
-        document.querySelectorAll('.sidebar .nav-link[data-page]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all links
-                document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Update breadcrumb
-                const pageName = this.querySelector('span').textContent;
-                document.getElementById('currentPage').textContent = pageName;
-                
-                // Update content area
+            // Update content area (assuming this function exists elsewhere)
+            if (typeof updateContent === 'function') {
                 updateContent(this.getAttribute('data-page'), pageName);
-                
-                // Close sidebar on mobile after selection
-                if (window.innerWidth <= 991) {
-                    closeSidebar();
-                }
-            });
+            }
+            
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 991) {
+                closeSidebar();
+            }
         });
+    });
 
-        
-
-        // Search functionality
-        document.getElementById('searchInput')?.addEventListener('input', function(e) {
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
             console.log('Searching for:', searchTerm);
             // Implement search logic here
         });
+    }
 
-        // Close sidebar when clicking outside on mobile
-        document.addEventListener('click', function(e) {
-            if (window.innerWidth <= 991) {
-                const sidebar = document.getElementById('sidebar');
-                const hamburger = document.querySelector('.hamburger');
-                
-                if (!sidebar.contains(e.target) && !hamburger.contains(e.target) && sidebar.classList.contains('show')) {
-                    closeSidebar();
-                }
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 991) {
+            const sidebar = document.getElementById('sidebar');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (sidebar && hamburger && 
+                !sidebar.contains(e.target) && 
+                !hamburger.contains(e.target) && 
+                sidebar.classList.contains('show')) {
+                closeSidebar();
             }
-        });
+        }
+    });
 
-        // Prevent sidebar from closing when clicking inside it
-        document.getElementById('sidebar').addEventListener('click', function(e) {
+    // Prevent sidebar from closing when clicking inside it
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar) {
+        sidebar.addEventListener('click', function(e) {
             e.stopPropagation();
         });
- 
- function updateDropdownText(element) {
-            const dropdown = element.closest('.dropdown');
-            const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
-            
-            // Update only the dropdown text
-            dropdownToggle.textContent = element.textContent;
-        }
+    }
+});
 
-// report dropdown
- // Reports dropdown functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const dropdownToggle = document.querySelector('.dropdown-toggle-nav');
-            const navItem = document.querySelector('.nav-item');
-            
-            if (dropdownToggle && navItem) {
-                dropdownToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navItem.classList.toggle('open');
-                });
-                
-                // Close dropdown when clicking outside
-                document.addEventListener('click', function(e) {
-                    if (!navItem.contains(e.target)) {
-                        navItem.classList.remove('open');
-                    }
-                });
+// ===== DROPDOWN FUNCTIONALITY =====
+function updateDropdownText(element) {
+    const dropdown = element.closest('.dropdown');
+    const dropdownToggle = dropdown?.querySelector('.dropdown-toggle');
+    
+    if (dropdownToggle) {
+        dropdownToggle.textContent = element.textContent;
+    }
+}
+
+// Reports dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdownToggle = document.querySelector('.dropdown-toggle-nav');
+    const navItem = document.querySelector('.nav-item');
+    
+    if (dropdownToggle && navItem) {
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            navItem.classList.toggle('open');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navItem.contains(e.target)) {
+                navItem.classList.remove('open');
             }
         });
+    }
+});
 
-        
-
-        // chart1
-
-
-        var options = { 
+// ===== CHARTS FUNCTIONALITY =====
+function initializeCharts() {
+    // Chart 1 - Donut Chart
+    if (document.querySelector("#chart")) {
+        var options1 = { 
             series: [65, 35], 
             chart: { 
                 type: 'donut',
@@ -138,7 +152,7 @@
                 width: 300
             },
             labels: ['Active', 'Inactive'],
-           colors: ['var(--secondary-color)', 'var(--primary-color)'],
+            colors: ['var(--secondary-color)', 'var(--primary-color)'],
             legend: {
                 show: false
             },
@@ -176,27 +190,13 @@
             }
         }; 
  
-        var chart = new ApexCharts(document.querySelector("#chart"), options); 
-        chart.render();
+        var chart1 = new ApexCharts(document.querySelector("#chart"), options1); 
+        chart1.render();
+    }
 
-        // progress table
-
-         // Animate progress bars on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const bars = document.querySelectorAll('.progress-bar-custom');
-            bars.forEach(bar => {
-                const width = bar.getAttribute('data-width');
-                setTimeout(() => {
-                    bar.style.width = width + '%';
-                }, 200);
-            });
-        });
-
-
-
-        // bar charts
-
-        var options = {
+    // Chart 2 - Bar Chart
+    if (document.querySelector("#chart2")) {
+        var options2 = {
             series: [
                 {
                     name: 'Female',
@@ -271,13 +271,13 @@
             }
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart2"), options);
-        chart.render();
+        var chart2 = new ApexCharts(document.querySelector("#chart2"), options2);
+        chart2.render();
+    }
 
-
-        // chart3
-
-         var options = {
+    // Chart 3 - Subscription Types Donut
+    if (document.querySelector("#chart3")) {
+        var options3 = {
             series: [35, 55, 25],
             chart: {
                 type: 'donut',
@@ -323,14 +323,13 @@
             }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart3"), options);
-        chart.render();
+        var chart3 = new ApexCharts(document.querySelector("#chart3"), options3);
+        chart3.render();
+    }
 
-
-        // chart-4
-
-
-         var options = {
+    // Chart 4 - Subscription Plans Donut
+    if (document.querySelector("#chart4")) {
+        var options4 = {
             series: [44, 55, 41, 17, 15, 25, 8],
             chart: {
                 type: 'donut',
@@ -384,72 +383,90 @@
             }]
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart4"), options);
-        chart.render();
+        var chart4 = new ApexCharts(document.querySelector("#chart4"), options4);
+        chart4.render();
+    }
+}
 
-
-        // camera function
-
-         // Get DOM elements
-        const cameraBtn = document.getElementById('cameraBtn');
-        const uploadPopup = document.getElementById('uploadPopup');
-        const closeBtn = document.getElementById('closeBtn');
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const scanBtn = document.getElementById('scanBtn');
-        const previewContainer = document.getElementById('previewContainer');
-        const previewImage = document.getElementById('previewImage');
-        const cameraView = document.getElementById('cameraView');
-        const cameraVideo = document.getElementById('cameraVideo');
-        const captureBtn = document.getElementById('captureBtn');
-        const stopBtn = document.getElementById('stopBtn');
-
-        let currentStream = null;
-        let isPopupOpen = false;
-
-        // Toggle popup when camera icon is clicked
-        cameraBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isPopupOpen) {
-                closePopup();
-            } else {
-                openPopup();
-            }
-        });
-
-        function openPopup() {
-            uploadPopup.classList.add('show');
-            isPopupOpen = true;
+// ===== PROGRESS BARS =====
+function animateProgressBars() {
+    const bars = document.querySelectorAll('.progress-bar-custom');
+    bars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        if (width) {
+            setTimeout(() => {
+                bar.style.width = width + '%';
+            }, 200);
         }
+    });
+}
 
-        function closePopup() {
-            uploadPopup.classList.remove('show');
-            isPopupOpen = false;
-            stopCamera();
-            resetUploadArea();
+// ===== CAMERA FUNCTIONALITY =====
+function initializeCameraFeatures() {
+    const cameraBtn = document.getElementById('cameraBtn');
+    const uploadPopup = document.getElementById('uploadPopup');
+    const closeBtn = document.getElementById('closeBtn');
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const scanBtn = document.getElementById('scanBtn');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewImage = document.getElementById('previewImage');
+    const cameraView = document.getElementById('cameraView');
+    const cameraVideo = document.getElementById('cameraVideo');
+    const captureBtn = document.getElementById('captureBtn');
+    const stopBtn = document.getElementById('stopBtn');
+
+    if (!cameraBtn || !uploadPopup) return; // Exit if elements don't exist
+
+    let currentStream = null;
+    let isPopupOpen = false;
+
+    // Toggle popup when camera icon is clicked
+    cameraBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isPopupOpen) {
+            closePopup();
+        } else {
+            openPopup();
         }
+    });
 
-        // Close popup
+    function openPopup() {
+        uploadPopup.classList.add('show');
+        isPopupOpen = true;
+    }
+
+    function closePopup() {
+        uploadPopup.classList.remove('show');
+        isPopupOpen = false;
+        stopCamera();
+        resetUploadArea();
+    }
+
+    // Close popup
+    if (closeBtn) {
         closeBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             closePopup();
         });
+    }
 
-        // Close popup when clicking outside
-        document.addEventListener('click', (e) => {
-            if (isPopupOpen && !uploadPopup.contains(e.target) && e.target !== cameraBtn) {
-                closePopup();
-            }
-        });
+    // Close popup when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isPopupOpen && !uploadPopup.contains(e.target) && e.target !== cameraBtn) {
+            closePopup();
+        }
+    });
 
-        // Prevent popup from closing when clicking inside it
-        uploadPopup.addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+    // Prevent popup from closing when clicking inside it
+    uploadPopup.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
 
-        // Upload area click to trigger file input
+    // Upload area click to trigger file input
+    if (uploadArea && fileInput) {
         uploadArea.addEventListener('click', () => {
-            if (cameraView.style.display !== 'block') {
+            if (!cameraView || cameraView.style.display !== 'block') {
                 fileInput.click();
             }
         });
@@ -481,34 +498,42 @@
                 displayImage(files[0]);
             }
         });
+    }
 
-        // Display selected image
-        function displayImage(file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImage.src = e.target.result;
-                previewContainer.style.display = 'block';
-                updateUploadAreaText(`Selected: ${file.name}`);
-            };
-            reader.readAsDataURL(file);
-        }
+    // Display selected image
+    function displayImage(file) {
+        if (!previewImage || !previewContainer) return;
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            previewImage.src = e.target.result;
+            previewContainer.style.display = 'block';
+            updateUploadAreaText(`Selected: ${file.name}`);
+        };
+        reader.readAsDataURL(file);
+    }
 
-        // Update upload area text
-        function updateUploadAreaText(text) {
+    // Update upload area text
+    function updateUploadAreaText(text) {
+        if (uploadArea) {
             const h6 = uploadArea.querySelector('h6');
-            h6.textContent = text;
+            if (h6) {
+                h6.textContent = text;
+            }
         }
+    }
 
-        // Reset upload area
-        function resetUploadArea() {
-            updateUploadAreaText('Choose Image - No image chosen');
-            previewContainer.style.display = 'none';
-            cameraView.style.display = 'none';
-            uploadArea.style.display = 'block';
-            fileInput.value = '';
-        }
+    // Reset upload area
+    function resetUploadArea() {
+        updateUploadAreaText('Choose Image - No image chosen');
+        if (previewContainer) previewContainer.style.display = 'none';
+        if (cameraView) cameraView.style.display = 'none';
+        if (uploadArea) uploadArea.style.display = 'block';
+        if (fileInput) fileInput.value = '';
+    }
 
-        // Camera functionality
+    // Camera functionality
+    if (scanBtn && cameraVideo) {
         scanBtn.addEventListener('click', async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ 
@@ -517,16 +542,18 @@
                 
                 currentStream = stream;
                 cameraVideo.srcObject = stream;
-                cameraView.style.display = 'block';
-                uploadArea.style.display = 'none';
+                if (cameraView) cameraView.style.display = 'block';
+                if (uploadArea) uploadArea.style.display = 'none';
                 
             } catch (error) {
                 console.error('Error accessing camera:', error);
                 alert('Unable to access camera. Please check permissions and try again.');
             }
         });
+    }
 
-        // Capture image from camera
+    // Capture image from camera
+    if (captureBtn && cameraVideo) {
         captureBtn.addEventListener('click', () => {
             const canvas = document.createElement('canvas');
             const context = canvas.getContext('2d');
@@ -537,37 +564,39 @@
             
             canvas.toBlob((blob) => {
                 const url = URL.createObjectURL(blob);
-                previewImage.src = url;
-                previewContainer.style.display = 'block';
+                if (previewImage) previewImage.src = url;
+                if (previewContainer) previewContainer.style.display = 'block';
                 updateUploadAreaText('Captured from camera');
                 
                 stopCamera();
-                uploadArea.style.display = 'block';
+                if (uploadArea) uploadArea.style.display = 'block';
             }, 'image/jpeg', 0.8);
         });
+    }
 
-        // Stop camera
-        function stopCamera() {
-            if (currentStream) {
-                currentStream.getTracks().forEach(track => track.stop());
-                currentStream = null;
-                cameraView.style.display = 'none';
-                uploadArea.style.display = 'block';
-            }
+    // Stop camera
+    function stopCamera() {
+        if (currentStream) {
+            currentStream.getTracks().forEach(track => track.stop());
+            currentStream = null;
+            if (cameraView) cameraView.style.display = 'none';
+            if (uploadArea) uploadArea.style.display = 'block';
         }
+    }
 
+    if (stopBtn) {
         stopBtn.addEventListener('click', stopCamera);
+    }
 
-        // Handle escape key to close popup
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && isPopupOpen) {
-                closePopup();
-            }
-        });
+    // Handle escape key to close popup
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isPopupOpen) {
+            closePopup();
+        }
+    });
+}
 
-// Combined JavaScript for both Edit Profile and Change Password forms
-
-// Check if elements exist before adding event listeners
+// ===== FORM HANDLERS =====
 function safeAddEventListener(elementId, event, handler) {
     const element = document.getElementById(elementId);
     if (element) {
@@ -578,28 +607,28 @@ function safeAddEventListener(elementId, event, handler) {
 // Edit Profile Form Handler
 function initEditProfileForm() {
     const registrationForm = document.getElementById('registrationForm');
+    if (!registrationForm) return;
+
     const fullNameInput = document.getElementById('fullName');
     const emailInput = document.getElementById('email');
-
-    if (!registrationForm) return; // Exit if form doesn't exist
 
     // Form submission handler
     registrationForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const fullName = fullNameInput.value.trim();
-        const email = emailInput.value.trim();
+        const fullName = fullNameInput?.value.trim() || '';
+        const email = emailInput?.value.trim() || '';
         
         // Validate form
         if (!fullName) {
             alert('Please enter your full name');
-            fullNameInput.focus();
+            fullNameInput?.focus();
             return;
         }
         
         if (!email) {
             alert('Please enter your email');
-            emailInput.focus();
+            emailInput?.focus();
             return;
         }
         
@@ -607,7 +636,7 @@ function initEditProfileForm() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
-            emailInput.focus();
+            emailInput?.focus();
             return;
         }
         
@@ -631,7 +660,6 @@ function initEditProfileForm() {
             }
         });
 
-        // Clear validation styling on input
         emailInput.addEventListener('input', function() {
             this.style.borderColor = '#e0e0e0';
             this.style.backgroundColor = '#fafafa';
@@ -642,20 +670,21 @@ function initEditProfileForm() {
 // Change Password Form Handler
 function initPasswordForm() {
     const passwordForm = document.getElementById('passwordForm');
+    if (!passwordForm) return;
+
     const currentPasswordInput = document.getElementById('currentPassword');
     const newPasswordInput = document.getElementById('newPassword');
     const confirmPasswordInput = document.getElementById('confirmPassword');
     const clearBtn = document.getElementById('clearBtn');
     const createBtn = document.getElementById('createBtn');
 
-    if (!passwordForm) return; // Exit if form doesn't exist
-
     // Helper function to highlight error fields
     function highlightError(input) {
+        if (!input) return;
+        
         input.style.borderColor = '#dc3545';
         input.style.backgroundColor = '#fff5f5';
         
-        // Remove error styling after user starts typing
         input.addEventListener('input', function() {
             this.style.borderColor = '#e0e0e0';
             this.style.backgroundColor = '#fafafa';
@@ -669,7 +698,6 @@ function initPasswordForm() {
             if (newPasswordInput) newPasswordInput.value = '';
             if (confirmPasswordInput) confirmPasswordInput.value = '';
             
-            // Clear any validation styling
             const inputs = [currentPasswordInput, newPasswordInput, confirmPasswordInput];
             inputs.forEach(input => {
                 if (input) {
@@ -686,26 +714,26 @@ function initPasswordForm() {
     passwordForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        const currentPassword = currentPasswordInput ? currentPasswordInput.value.trim() : '';
-        const newPassword = newPasswordInput ? newPasswordInput.value.trim() : '';
-        const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value.trim() : '';
+        const currentPassword = currentPasswordInput?.value.trim() || '';
+        const newPassword = newPasswordInput?.value.trim() || '';
+        const confirmPassword = confirmPasswordInput?.value.trim() || '';
         
         // Validation
         if (!currentPassword) {
             alert('Please enter your current password');
-            if (currentPasswordInput) currentPasswordInput.focus();
+            currentPasswordInput?.focus();
             return;
         }
         
         if (!newPassword) {
             alert('Please enter a new password');
-            if (newPasswordInput) newPasswordInput.focus();
+            newPasswordInput?.focus();
             return;
         }
         
         if (!confirmPassword) {
             alert('Please confirm your new password');
-            if (confirmPasswordInput) confirmPasswordInput.focus();
+            confirmPasswordInput?.focus();
             return;
         }
         
@@ -736,11 +764,9 @@ function initPasswordForm() {
             return;
         }
         
-        // Success - password created/updated
         alert('Password updated successfully!');
         console.log('Password form submitted successfully');
         
-        // Clear form after successful creation
         if (clearBtn) clearBtn.click();
     });
 
@@ -759,128 +785,141 @@ function initPasswordForm() {
         });
     }
 
-    // Enter key handling for better UX
+    // Enter key handling
     passwordForm.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            if (createBtn) createBtn.click();
+            createBtn?.click();
         }
     });
 }
 
-// Initialize forms when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Edit Profile Form
-    initEditProfileForm();
-    
-    // Initialize Change Password Form
-    initPasswordForm();
-    
-    console.log('Forms initialized successfully');
-});
+// ===== MEMBER REGISTRATION =====
+function initMemberRegistration() {
+    const memberRegistrationForm = document.getElementById('registrationForm');
+    if (!memberRegistrationForm) return;
 
-// Alternative initialization if DOMContentLoaded has already fired
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function() {
-        initEditProfileForm();
-        initPasswordForm();
-    });
-} else {
-    initEditProfileForm();
-    initPasswordForm();
+    // Avoid duplicate listeners if this form is also used for profile editing
+    if (memberRegistrationForm.hasAttribute('data-member-registration')) {
+        memberRegistrationForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const entries = {};
+            formData.forEach((value, key) => {
+                if (entries[key]) {
+                    if (!Array.isArray(entries[key])) {
+                        entries[key] = [entries[key]];
+                    }
+                    entries[key].push(value);
+                } else {
+                    entries[key] = value;
+                }
+            });
+
+            console.log("Member Registration Data:", entries);
+            alert("Registration form submitted! Check console for details.");
+        });
+    }
 }
 
+// ===== INTERNATIONAL PHONE INPUT (SAUDI ARABIA DEFAULT) =====
+function initPhoneInputs() {
+    // --- Removed the getIp function for simplicity and reliability ---
 
-// member registration
- document.getElementById("registrationForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+    const phoneInputField = document.querySelector("#phone");
+    const guardianInputField = document.querySelector("#guardianNumber");
 
-      const formData = new FormData(this);
-      const entries = {};
-      formData.forEach((value, key) => {
-        if (entries[key]) {
-          if (!Array.isArray(entries[key])) {
-            entries[key] = [entries[key]];
-          }
-          entries[key].push(value);
-        } else {
-          entries[key] = value;
+    let phoneInput, guardianInput;
+
+    // Initialize the main phone input
+    if (phoneInputField && window.intlTelInput) {
+        phoneInput = window.intlTelInput(phoneInputField, {
+            // Explicitly set the default country to Saudi Arabia ('sa')
+            initialCountry: "sa", 
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    }
+
+    // Initialize the guardian phone input
+    if (guardianInputField && window.intlTelInput) {
+        guardianInput = window.intlTelInput(guardianInputField, {
+            // Explicitly set the default country to Saudi Arabia ('sa')
+            initialCountry: "sa", 
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        });
+    }
+
+    // Form submission handler for phone numbers
+    window.processPhoneForm = function(event) {
+        event.preventDefault();
+
+        // Get the phone numbers in E.164 format
+        const phoneNumber = phoneInput?.getNumber() || '';
+        const guardianNumber = guardianInput?.getNumber() || '';
+
+        const info = document.querySelector(".alert-info");
+        if (info) {
+            info.style.display = "block";
+            info.innerHTML = `
+                Phone number in E.164 format: ${phoneNumber}
+
+                Guardian number in E.164 format: ${guardianNumber}
+            `;
         }
-      });
-
-      console.log("Form Data Submitted:", entries);
-      alert("Registration form submitted! Check console for details.");
-    });
-    
-    // coutry code
-
-    //https://www.jqueryscript.net/form/jQuery-International-Telephone-Input-With-Flags-Dial-Codes.html
-
-//https://www.twilio.com/blog/international-phone-number-input-html-javascript
-
-function getIp(callback) {
-  fetch('https://ipinfo.io/json?token=66e2f39b20a2bd', { 
-      headers: { 'Accept': 'application/json' } 
-  })
-    .then((resp) => resp.json())
-    .catch(() => {
-      return { country: 'us' };
-    })
-    .then((resp) => callback(resp.country));
+    };
 }
 
-// Initialize both inputs
-const phoneInputField = document.querySelector("#phone");
-const guardianInputField = document.querySelector("#guardianNumber");
+// Call the function to initialize the phone inputs when the page loads
+// You will need to make sure this function is called, e.g., on DOMContentLoaded
+// initPhoneInputs();
 
-const phoneInput = window.intlTelInput(phoneInputField, {
-  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
-
-const guardianInput = window.intlTelInput(guardianInputField, {
-  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
-
-const info = document.querySelector(".alert-info");
-
-// Process form submit
-function process(event) {
-  event.preventDefault();
-
-  const phoneNumber = phoneInput.getNumber();
-  const guardianNumber = guardianInput.getNumber();
-
-  info.style.display = "";
-  info.innerHTML = `
-    Phone number in E.164 format: <strong>${phoneNumber}</strong><br>
-    Guardian number in E.164 format: <strong>${guardianNumber}</strong>
-  `;
+// ===== DATE PICKER =====
+function initDatePicker() {
+    const dobField = document.getElementById("dob");
+    if (dobField && window.flatpickr) {
+        flatpickr("#dob", {
+            dateFormat: "d/m/Y",
+            allowInput: true,
+            clickOpens: true,
+            altInput: false,
+        });
+    }
 }
 
-// select section
- 
-// Initialize Bootstrap Select for elements with the 'my-select' class
-    $(document).ready(function() {
-      $('.my-select').selectpicker();
-    });
+// ===== BOOTSTRAP SELECT =====
+function initBootstrapSelect() {
+    if (window.$ && $.fn.selectpicker) {
+        $(document).ready(function() {
+            $('.my-select').selectpicker();
+        });
+    }
+}
 
-    // datepicker
+// ===== FILTER MODAL =====
+function initFilterModal() {
+    const openBtn = document.getElementById('openFilter');
+    const closeBtn = document.getElementById('closeFilter');
+    const modal = document.getElementById('filterModal');
 
-      // Initialize flatpickr
-    flatpickr("#dob", {
-      dateFormat: "d/m/Y", // Display format
-      allowInput: true,    // Allow manual typing
-      clickOpens: true,    // Open calendar on click
-      altInput: false,     // Use the original input
-      // Uncomment the following line if you want to pick time too
-      // enableTime: true,   // Allow time selection
-      // noCalendar: false   // Keep calendar visible
-    });
+    if (openBtn && closeBtn && modal) {
+        openBtn.addEventListener('click', () => {
+            modal.classList.toggle('active');
+        });
 
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
 
-    // checkbox select
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                modal.classList.remove('active');
+            }
+        });
+    }
+}
 
-    const selectAll = document.getElementById("selectAll");
+ const selectAll = document.getElementById("selectAll");
   const checkboxes = document.querySelectorAll(".row-check");
 
   // Toggle all checkboxes when header checkbox is clicked
@@ -894,3 +933,27 @@ function process(event) {
       selectAll.checked = [...checkboxes].every(c => c.checked);
     });
   });
+
+// ===== MAIN INITIALIZATION =====
+function initializeAllComponents() {
+    initEditProfileForm();
+    initPasswordForm();
+    initMemberRegistration();
+    initializeCameraFeatures();
+    initializeCharts();
+    animateProgressBars();
+    initPhoneInputs();
+    initDatePicker();
+    initBootstrapSelect();
+    initFilterModal();
+    
+    console.log('All components initialized successfully');
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeAllComponents);
+} else {
+    // DOM is already loaded
+    initializeAllComponents();
+}
