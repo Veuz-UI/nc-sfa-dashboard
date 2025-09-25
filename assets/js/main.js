@@ -387,4 +387,237 @@
         var chart = new ApexCharts(document.querySelector("#chart4"), options);
         chart.render();
 
+
+        // camera function
+
+         // Get DOM elements
+        const cameraBtn = document.getElementById('cameraBtn');
+        const uploadPopup = document.getElementById('uploadPopup');
+        const closeBtn = document.getElementById('closeBtn');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const scanBtn = document.getElementById('scanBtn');
+        const previewContainer = document.getElementById('previewContainer');
+        const previewImage = document.getElementById('previewImage');
+        const cameraView = document.getElementById('cameraView');
+        const cameraVideo = document.getElementById('cameraVideo');
+        const captureBtn = document.getElementById('captureBtn');
+        const stopBtn = document.getElementById('stopBtn');
+
+        let currentStream = null;
+        let isPopupOpen = false;
+
+        // Toggle popup when camera icon is clicked
+        cameraBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPopupOpen) {
+                closePopup();
+            } else {
+                openPopup();
+            }
+        });
+
+        function openPopup() {
+            uploadPopup.classList.add('show');
+            isPopupOpen = true;
+        }
+
+        function closePopup() {
+            uploadPopup.classList.remove('show');
+            isPopupOpen = false;
+            stopCamera();
+            resetUploadArea();
+        }
+
+        // Close popup
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closePopup();
+        });
+
+        // Close popup when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isPopupOpen && !uploadPopup.contains(e.target) && e.target !== cameraBtn) {
+                closePopup();
+            }
+        });
+
+        // Prevent popup from closing when clicking inside it
+        uploadPopup.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Upload area click to trigger file input
+        uploadArea.addEventListener('click', () => {
+            if (cameraView.style.display !== 'block') {
+                fileInput.click();
+            }
+        });
+
+        // Handle file selection
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                displayImage(file);
+            }
+        });
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('image/')) {
+                displayImage(files[0]);
+            }
+        });
+
+        // Display selected image
+        function displayImage(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+                updateUploadAreaText(`Selected: ${file.name}`);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Update upload area text
+        function updateUploadAreaText(text) {
+            const h6 = uploadArea.querySelector('h6');
+            h6.textContent = text;
+        }
+
+        // Reset upload area
+        function resetUploadArea() {
+            updateUploadAreaText('Choose Image - No image chosen');
+            previewContainer.style.display = 'none';
+            cameraView.style.display = 'none';
+            uploadArea.style.display = 'block';
+            fileInput.value = '';
+        }
+
+        // Camera functionality
+        scanBtn.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: 'environment' }
+                });
+                
+                currentStream = stream;
+                cameraVideo.srcObject = stream;
+                cameraView.style.display = 'block';
+                uploadArea.style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                alert('Unable to access camera. Please check permissions and try again.');
+            }
+        });
+
+        // Capture image from camera
+        captureBtn.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            
+            canvas.width = cameraVideo.videoWidth;
+            canvas.height = cameraVideo.videoHeight;
+            context.drawImage(cameraVideo, 0, 0);
+            
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                previewImage.src = url;
+                previewContainer.style.display = 'block';
+                updateUploadAreaText('Captured from camera');
+                
+                stopCamera();
+                uploadArea.style.display = 'block';
+            }, 'image/jpeg', 0.8);
+        });
+
+        // Stop camera
+        function stopCamera() {
+            if (currentStream) {
+                currentStream.getTracks().forEach(track => track.stop());
+                currentStream = null;
+                cameraView.style.display = 'none';
+                uploadArea.style.display = 'block';
+            }
+        }
+
+        stopBtn.addEventListener('click', stopCamera);
+
+        // Handle escape key to close popup
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isPopupOpen) {
+                closePopup();
+            }
+        });
+
+
+        // edit profile
+
+          // Form submission handler
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            
+            // Validate form
+            if (!fullName.trim()) {
+                alert('Please enter your full name');
+                document.getElementById('fullName').focus();
+                return;
+            }
+            
+            if (!email.trim()) {
+                alert('Please enter your email');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                document.getElementById('email').focus();
+                return;
+            }
+            
+            // Success message (you can replace this with actual form submission)
+            alert('Registration updated successfully!');
+            console.log('Form Data:', { fullName, email });
+        });
+
+        // Real-time email validation feedback
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (email && !emailRegex.test(email)) {
+                this.style.borderColor = '#dc3545';
+                this.style.backgroundColor = '#fff5f5';
+            } else {
+                this.style.borderColor = '#e0e0e0';
+                this.style.backgroundColor = '#fafafa';
+            }
+        });
+
+        // Clear validation styling on input
+        document.getElementById('email').addEventListener('input', function() {
+            this.style.borderColor = '#e0e0e0';
+            this.style.backgroundColor = '#fafafa';
+        });
         

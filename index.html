@@ -96,10 +96,56 @@
             <input type="text" placeholder="Search..." id="searchInput">
             <i class="fi fi-rr-search"></i>
         </div>
-        <button id="screenshotBtn" title="Take Screenshot">
-    <i class="fi fi-rr-camera"></i>
-  </button>
-            <button title="Notifications">
+        <div class="camera-container">
+        <button class="camera-icon-btn" id="cameraBtn">
+            <i class="fi fi-rr-camera"></i>
+        </button>
+
+        <!-- Upload Popup -->
+        <div class="upload-popup" id="uploadPopup">
+            <div class="popup-header">
+                <h5 class="popup-title">Upload Image</h5>
+                <button class="close-btn" id="closeBtn">&times;</button>
+            </div>
+            
+            <!-- Upload Area -->
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">
+                    <i class="fi fi-rr-add-image"></i>
+                </div>
+                <h6>Choose Image - No image chosen</h6>
+                <p>Or drop an image to scan</p>
+            </div>
+
+            <!-- Hidden File Input -->
+            <input type="file" class="file-input" id="fileInput" accept="image/*">
+
+            <!-- Scan Button -->
+            <button class="scan-btn" id="scanBtn">
+                <i class="fi fi-rr-camera"></i>
+                Scan using camera directly
+            </button>
+
+            <!-- Preview Container -->
+            <div class="preview-container" id="previewContainer">
+                <img class="preview-image" id="previewImage" alt="Preview">
+            </div>
+
+            <!-- Camera Container -->
+            <div class="camera-view" id="cameraView">
+                <video class="camera-video" id="cameraVideo" autoplay playsinline></video>
+                <div class="camera-controls">
+                    <button class="capture-btn" id="captureBtn">
+                        <i class="bi bi-camera me-1"></i> Capture
+                    </button>
+                    <button class="stop-btn" id="stopBtn">
+                        <i class="bi bi-stop-circle me-1"></i> Stop
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+            <button title="Notifications" class="notification">
                 <i class="fas fa-bell"></i>
             </button>
             
@@ -122,7 +168,7 @@
     <!-- Left: Breadcrumb -->
     <div class="breadcrumb-left">
       <i class="fi fi-rr-house-chimney"></i>
-      <span>Dashboard <span>/ Page Name</span></span>
+      <span>Dashboard /<span class="page-name"> Page Name</span></span>
     </div>
 
     <!-- Right: Language Dropdown -->
