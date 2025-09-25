@@ -565,44 +565,60 @@
             }
         });
 
+// Combined JavaScript for both Edit Profile and Change Password forms
 
-        // edit profile
+// Check if elements exist before adding event listeners
+function safeAddEventListener(elementId, event, handler) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.addEventListener(event, handler);
+    }
+}
 
-          // Form submission handler
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const fullName = document.getElementById('fullName').value;
-            const email = document.getElementById('email').value;
-            
-            // Validate form
-            if (!fullName.trim()) {
-                alert('Please enter your full name');
-                document.getElementById('fullName').focus();
-                return;
-            }
-            
-            if (!email.trim()) {
-                alert('Please enter your email');
-                document.getElementById('email').focus();
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Please enter a valid email address');
-                document.getElementById('email').focus();
-                return;
-            }
-            
-            // Success message (you can replace this with actual form submission)
-            alert('Registration updated successfully!');
-            console.log('Form Data:', { fullName, email });
-        });
+// Edit Profile Form Handler
+function initEditProfileForm() {
+    const registrationForm = document.getElementById('registrationForm');
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('email');
 
-        // Real-time email validation feedback
-        document.getElementById('email').addEventListener('blur', function() {
+    if (!registrationForm) return; // Exit if form doesn't exist
+
+    // Form submission handler
+    registrationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullName = fullNameInput.value.trim();
+        const email = emailInput.value.trim();
+        
+        // Validate form
+        if (!fullName) {
+            alert('Please enter your full name');
+            fullNameInput.focus();
+            return;
+        }
+        
+        if (!email) {
+            alert('Please enter your email');
+            emailInput.focus();
+            return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address');
+            emailInput.focus();
+            return;
+        }
+        
+        // Success message
+        alert('Profile updated successfully!');
+        console.log('Profile Data:', { fullName, email });
+    });
+
+    // Real-time email validation feedback
+    if (emailInput) {
+        emailInput.addEventListener('blur', function() {
             const email = this.value.trim();
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             
@@ -616,8 +632,265 @@
         });
 
         // Clear validation styling on input
-        document.getElementById('email').addEventListener('input', function() {
+        emailInput.addEventListener('input', function() {
             this.style.borderColor = '#e0e0e0';
             this.style.backgroundColor = '#fafafa';
         });
+    }
+}
+
+// Change Password Form Handler
+function initPasswordForm() {
+    const passwordForm = document.getElementById('passwordForm');
+    const currentPasswordInput = document.getElementById('currentPassword');
+    const newPasswordInput = document.getElementById('newPassword');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const clearBtn = document.getElementById('clearBtn');
+    const createBtn = document.getElementById('createBtn');
+
+    if (!passwordForm) return; // Exit if form doesn't exist
+
+    // Helper function to highlight error fields
+    function highlightError(input) {
+        input.style.borderColor = '#dc3545';
+        input.style.backgroundColor = '#fff5f5';
         
+        // Remove error styling after user starts typing
+        input.addEventListener('input', function() {
+            this.style.borderColor = '#e0e0e0';
+            this.style.backgroundColor = '#fafafa';
+        }, { once: true });
+    }
+
+    // Clear button functionality
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function() {
+            if (currentPasswordInput) currentPasswordInput.value = '';
+            if (newPasswordInput) newPasswordInput.value = '';
+            if (confirmPasswordInput) confirmPasswordInput.value = '';
+            
+            // Clear any validation styling
+            const inputs = [currentPasswordInput, newPasswordInput, confirmPasswordInput];
+            inputs.forEach(input => {
+                if (input) {
+                    input.style.borderColor = '#e0e0e0';
+                    input.style.backgroundColor = '#fafafa';
+                }
+            });
+            
+            console.log('All password form data cleared');
+        });
+    }
+
+    // Form submission handler
+    passwordForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const currentPassword = currentPasswordInput ? currentPasswordInput.value.trim() : '';
+        const newPassword = newPasswordInput ? newPasswordInput.value.trim() : '';
+        const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value.trim() : '';
+        
+        // Validation
+        if (!currentPassword) {
+            alert('Please enter your current password');
+            if (currentPasswordInput) currentPasswordInput.focus();
+            return;
+        }
+        
+        if (!newPassword) {
+            alert('Please enter a new password');
+            if (newPasswordInput) newPasswordInput.focus();
+            return;
+        }
+        
+        if (!confirmPassword) {
+            alert('Please confirm your new password');
+            if (confirmPasswordInput) confirmPasswordInput.focus();
+            return;
+        }
+        
+        if (newPassword !== confirmPassword) {
+            alert('New password and confirm password do not match');
+            if (confirmPasswordInput) {
+                confirmPasswordInput.focus();
+                highlightError(confirmPasswordInput);
+            }
+            return;
+        }
+        
+        if (newPassword.length < 6) {
+            alert('New password must be at least 6 characters long');
+            if (newPasswordInput) {
+                newPasswordInput.focus();
+                highlightError(newPasswordInput);
+            }
+            return;
+        }
+        
+        if (currentPassword === newPassword) {
+            alert('New password must be different from current password');
+            if (newPasswordInput) {
+                newPasswordInput.focus();
+                highlightError(newPasswordInput);
+            }
+            return;
+        }
+        
+        // Success - password created/updated
+        alert('Password updated successfully!');
+        console.log('Password form submitted successfully');
+        
+        // Clear form after successful creation
+        if (clearBtn) clearBtn.click();
+    });
+
+    // Real-time password matching validation
+    if (confirmPasswordInput && newPasswordInput) {
+        confirmPasswordInput.addEventListener('input', function() {
+            const newPassword = newPasswordInput.value;
+            const confirmPassword = this.value;
+            
+            if (confirmPassword && newPassword !== confirmPassword) {
+                highlightError(this);
+            } else {
+                this.style.borderColor = '#e0e0e0';
+                this.style.backgroundColor = '#fafafa';
+            }
+        });
+    }
+
+    // Enter key handling for better UX
+    passwordForm.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            if (createBtn) createBtn.click();
+        }
+    });
+}
+
+// Initialize forms when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Edit Profile Form
+    initEditProfileForm();
+    
+    // Initialize Change Password Form
+    initPasswordForm();
+    
+    console.log('Forms initialized successfully');
+});
+
+// Alternative initialization if DOMContentLoaded has already fired
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+        initEditProfileForm();
+        initPasswordForm();
+    });
+} else {
+    initEditProfileForm();
+    initPasswordForm();
+}
+
+
+// member registration
+ document.getElementById("registrationForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const entries = {};
+      formData.forEach((value, key) => {
+        if (entries[key]) {
+          if (!Array.isArray(entries[key])) {
+            entries[key] = [entries[key]];
+          }
+          entries[key].push(value);
+        } else {
+          entries[key] = value;
+        }
+      });
+
+      console.log("Form Data Submitted:", entries);
+      alert("Registration form submitted! Check console for details.");
+    });
+    
+    // coutry code
+
+    //https://www.jqueryscript.net/form/jQuery-International-Telephone-Input-With-Flags-Dial-Codes.html
+
+//https://www.twilio.com/blog/international-phone-number-input-html-javascript
+
+function getIp(callback) {
+  fetch('https://ipinfo.io/json?token=66e2f39b20a2bd', { 
+      headers: { 'Accept': 'application/json' } 
+  })
+    .then((resp) => resp.json())
+    .catch(() => {
+      return { country: 'us' };
+    })
+    .then((resp) => callback(resp.country));
+}
+
+// Initialize both inputs
+const phoneInputField = document.querySelector("#phone");
+const guardianInputField = document.querySelector("#guardianNumber");
+
+const phoneInput = window.intlTelInput(phoneInputField, {
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+
+const guardianInput = window.intlTelInput(guardianInputField, {
+  utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+});
+
+const info = document.querySelector(".alert-info");
+
+// Process form submit
+function process(event) {
+  event.preventDefault();
+
+  const phoneNumber = phoneInput.getNumber();
+  const guardianNumber = guardianInput.getNumber();
+
+  info.style.display = "";
+  info.innerHTML = `
+    Phone number in E.164 format: <strong>${phoneNumber}</strong><br>
+    Guardian number in E.164 format: <strong>${guardianNumber}</strong>
+  `;
+}
+
+// select section
+ 
+// Initialize Bootstrap Select for elements with the 'my-select' class
+    $(document).ready(function() {
+      $('.my-select').selectpicker();
+    });
+
+    // datepicker
+
+      // Initialize flatpickr
+    flatpickr("#dob", {
+      dateFormat: "d/m/Y", // Display format
+      allowInput: true,    // Allow manual typing
+      clickOpens: true,    // Open calendar on click
+      altInput: false,     // Use the original input
+      // Uncomment the following line if you want to pick time too
+      // enableTime: true,   // Allow time selection
+      // noCalendar: false   // Keep calendar visible
+    });
+
+
+    // checkbox select
+
+    const selectAll = document.getElementById("selectAll");
+  const checkboxes = document.querySelectorAll(".row-check");
+
+  // Toggle all checkboxes when header checkbox is clicked
+  selectAll.addEventListener("change", function () {
+    checkboxes.forEach(cb => cb.checked = this.checked);
+  });
+
+  // Update "Select All" state if user manually toggles row checkboxes
+  checkboxes.forEach(cb => {
+    cb.addEventListener("change", function () {
+      selectAll.checked = [...checkboxes].every(c => c.checked);
+    });
+  });

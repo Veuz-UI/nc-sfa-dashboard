@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Picker Example</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Flatpickr CSS (date picker library) -->
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+  <!-- Optional: Font Awesome for calendar icon -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* Position calendar icon inside the input */
+    .input-group .calendar-icon {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #495057;
+    }
+
+    /* Add padding to input so text doesn't overlap icon */
+    .input-group input {
+      padding-right: 2.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <label for="dob" class="form-label">Date of Birth</label>
+        <div class="input-group">
+          <input type="text" id="dob" name="dob" class="form-control" placeholder="--/--/----" required>
+          <span class="calendar-icon"><i class="fa fa-calendar"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script>
+    // Initialize flatpickr
+    flatpickr("#dob", {
+      dateFormat: "d/m/Y", // Display format
+      allowInput: true,    // Allow manual typing
+      clickOpens: true,    // Open calendar on click
+      altInput: false,     // Use the original input
+      // Uncomment the following line if you want to pick time too
+      // enableTime: true,   // Allow time selection
+      // noCalendar: false   // Keep calendar visible
+    });
+  </script>
+</body>
+</html>
