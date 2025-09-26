@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports For All - Dashboard</title>
+
+    <link rel="icon" href="assets/img/logos/sports-for-all-small-logo.png">
+     <!-- Bootstrap 5 CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Select CSS (compatible with Bootstrap 5) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+
+  <!-- Font Awesome (optional) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Intl Tel Input CSS (optional) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet">
+  <!-- Flatpickr CSS (date picker library) -->
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+   
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="logo">
+            <a href="#"><img src="assets/img/logos/sports-for-all-logo.png" alt="Sports For All" class="main-logo"></a>
+            <a href="#"><img src="assets/img/logos/sports-for-all-small-logo.png" alt="S" class="small-logo"></a>
+        </div>
+
+        <nav class="nav flex-column">
+            <a class="nav-link" href="index.html">
+                <img src="assets/img/dashboard/dashboard.svg" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a class="nav-link active" href="membership.html">
+                <img src="assets/img/dashboard/membership.svg" alt="">
+                <span>Membership</span>
+            </a>
+            <a class="nav-link" href="member-registration.html">
+                <img src="assets/img/dashboard/member-registration.svg" alt="">
+                <span>Member Registration</span>
+            </a>
+            <a class="nav-link" href="#subscriptions">
+                <img src="assets/img/dashboard/subscription.svg" alt="">
+                <span>Subscriptions</span>
+            </a>
+            <a class="nav-link" href="#roles">
+                <img src="assets/img/dashboard/roles.svg" alt="">
+                <span>Roles</span>
+            </a>
+            <a class="nav-link" href="#locations">
+                <img src="assets/img/dashboard/location.svg" alt="">
+                <span>Locations</span>
+            </a>
+            <!-- Reports with Dropdown -->
+            <div class="nav-item">
+                <a class="nav-link dropdown-toggle-nav" href="#reports">
+                    <div style="display: flex; align-items: center;">
+                        <img src="assets/img/dashboard/reports.svg" alt="">
+                        <span>Reports</span>
+                    </div>
+                    <i class="fi fi-rr-angle-small-right dropdown-icon"></i>
+                </a>
+                <div class="dropdown-menu-nav">
+                    <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                            Report</span></a>
+                    <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                            Summary Report</span></a>
+                    <a class="dropdown-item-nav" href="#"><i class="fi fi-rr-angle-small-right"></i><span>Consolidate
+                            Report</span></a>
+
+                </div>
+            </div>
+
+            <a class="nav-link" href="#users">
+                <img src="assets/img/dashboard/users.svg" alt="">
+                <span>Users</span>
+            </a>
+            <a class="nav-link" href="#settings">
+                <img src="assets/img/dashboard/settings.svg" alt="">
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div style="position: absolute; bottom: 20px; width: 100%;">
+            <a class="nav-link log-out" href="#logout" style="color: var(--primary-color);">
+                <img src="assets/img/dashboard/log-out.svg" alt="">
+                <span>Log Out</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Top Navigation -->
+    <div class="topbar" id="topbar">
+        <div class="d-flex align-items-center">
+            <button class="hamburger" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+
+
+
+        <div class="user-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Search..." id="searchInput">
+                <i class="fi fi-rr-search"></i>
+            </div>
+            <div class="camera-container">
+                <button class="camera-icon-btn" id="cameraBtn">
+                    <i class="fi fi-rr-camera"></i>
+                </button>
+
+                <!-- Upload Popup -->
+                <div class="upload-popup" id="uploadPopup">
+                    <div class="popup-header">
+                        <h5 class="popup-title">Upload Image</h5>
+                        <button class="close-btn" id="popcloseBtn">&times;</button>
+                    </div>
+
+                    <!-- Upload Area -->
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fi fi-rr-add-image"></i>
+                        </div>
+                        <h6>Choose Image - No image chosen</h6>
+                        <p>Or drop an image to scan</p>
+                    </div>
+
+                    <!-- Hidden File Input -->
+                    <input type="file" class="file-input" id="fileInput" accept="image/*">
+
+                    <!-- Scan Button -->
+                    <button class="scan-btn" id="scanBtn">
+                        <i class="fi fi-rr-camera"></i>
+                        Scan using camera directly
+                    </button>
+
+                    <!-- Preview Container -->
+                    <div class="preview-container" id="previewContainer">
+                        <img class="preview-image" id="previewImage" alt="Preview">
+                    </div>
+
+                    <!-- Camera Container -->
+                    <div class="camera-view" id="cameraView">
+                        <video class="camera-video" id="cameraVideo" autoplay playsinline></video>
+                        <div class="camera-controls">
+                            <button class="capture-btn" id="captureBtn">
+                                <i class="bi bi-camera me-1"></i> Capture
+                            </button>
+                            <button class="stop-btn" id="stopBtn">
+                                <i class="bi bi-stop-circle me-1"></i> Stop
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button title="Notifications" class="notification">
+                <i class="fas fa-bell"></i>
+            </button>
+
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown">
+                <button class="profile-btn" id="profileMenu" data-bs-toggle="dropdown" aria-expanded="false"
+                    title="Profile">
+                    <img src="assets/img/dashboard/user.png" alt="User">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenu">
+                    <li><a class="dropdown-item user-list" href="profile.html"><i class="fi fi-rr-user"></i><span>
+                                Profile</span></a></li>
+                    <li><a class="dropdown-item user-list" href="change-password.html"><i
+                                class="fi fi-rr-lock"></i><span> Change Password</span></a></li>
+                    <li><a class="dropdown-item user-list" href="login.html"><i class="fi fi-rr-sign-out-alt"></i><span>
+                                Logout</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="breadcrumb-bar">
+        <!-- Left: Breadcrumb -->
+        <div class="breadcrumb-left">
+            <i class="fi fi-rr-house-chimney"></i>
+            <span>Dashboard /<span class="page-name"> Change PAssword</span></span>
+        </div>
+
+        <!-- Right: Language Dropdown -->
+        <div class="lang-dropdown dropdown">
+            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="assets/img/dashboard/language.svg" alt=""> EN
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">EN</a></li>
+                <li><a class="dropdown-item" href="#">AR</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="row justify-content-center">
+
+
+            <div class="table-container member-details">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+    <!-- Left: Nav Tabs -->
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button class="nav-link active" id="member-tab" data-bs-toggle="tab" data-bs-target="#member">Member Details</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="subscription-tab" data-bs-toggle="tab" data-bs-target="#subscription">Subscription History</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="card-tab" data-bs-toggle="tab" data-bs-target="#card">Card Duplicate Issue History</button>
+        </li>
+    </ul>
+
+    <!-- Right: Action Buttons -->
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-sub">Subscribe</button>
+        <button type="button" class="btn btn-print">Print Card</button>
+        <button type="button" id="editBtn" class="btn btn-edit">Edit</button>
+        <button type="button" class="btn btn-issue">Issue Duplicate Card</button>
+    </div>
+</div>
+
+<!-- Tab Content -->
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="member">
+        <form id="Member-details-form">
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+          <label for="fullName" class="form-label">Full Name</label>
+          <input type="text" id="fullName" name="fullName"
+           class="form-control"
+           placeholder="Full Name"
+           value="شموخ صالح ال هرمس"
+           readonly data-editable="true" required>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email@example.com" value="am_shmook@hotmail.com" readonly data-editable="true" required>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <label for="phone" class="form-label">Phone Number</label>
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 0554437892" value="0554437892" readonly data-editable="true" required>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <label for="guardianNumber" class="form-label">Guardian Number</label>
+          <input type="tel" id="guardianNumber" name="guardianNumber" class="form-control" placeholder="+91 0554437892" value="0554437892" readonly data-editable="true" required>
+        </div>
+        <div class="col-md-6 col-lg-4">
+  <label for="gender" class="form-label">Gender</label>
+    <select id="gender" name="gender"
+            class="selectpicker"
+            required
+            disabled
+            data-editable="true">
+      <option value="">Select</option>
+      <option value="Male" selected>Male</option>
+      <option value="Female">Female</option>
+    </select>
+</div>
+
+        <div class="col-md-6 col-lg-4">
+          <label for="idNumber" class="form-label">ID Number</label>
+          <input type="text" id="idNumber" name="idNumber" class="form-control" placeholder="ID Number" required>
+        </div>
+        <!-- Date of Registration -->
+  <div class="col-md-6 col-lg-4">
+    <label for="dateofbirth" class="form-label">Date of Registration</label>
+    <input type="date" id="dateofbirth" name="dateofbirth"
+           class="form-control"
+           value="2024-01-10"
+           readonly
+           required
+           >
+  </div>
+
+   <!-- Nationality -->
+  <div class="col-md-6 col-lg-4">
+    <label for="nationality" class="form-label">Nationality</label>
+    <input type="text" id="nationality" name="nationality"
+           class="form-control"
+           placeholder="Nationality"
+           value="Indian"
+           readonly
+           required
+           >
+  </div>
+  <!-- City -->
+  <div class="col-md-6 col-lg-4">
+    <label for="city" class="form-label">City</label>
+    <input type="text" id="city" name="city"
+           class="form-control"
+           placeholder="City"
+           value="Bengaluru"
+           readonly
+           required
+           >
+  </div>
+
+  <!-- Preferred Location -->
+  <div class="col-md-6 col-lg-4">
+    <label for="preferredLocation" class="form-label">Preferred Location</label>
+    <input type="text" id="preferredLocation" name="preferredLocation"
+           class="form-control"
+           placeholder="Preferred Location"
+           value="Koramangala"
+           readonly
+           required
+           >
+  </div>
+
+  <!-- Vaccinated -->
+  <div class="col-md-6 col-lg-4">
+    <label for="vaccinated" class="form-label">Vaccinated</label>
+    <input type="text" id="vaccinated" name="vaccinated"
+           class="form-control"
+           placeholder="select"
+           value="Yes"
+           readonly
+           required
+           >
+    
+  </div>
+<!-- Registration Purpose -->
+  <div class="col-md-6 col-lg-4">
+    <label for="registrationPurpose" class="form-label">Registration Purpose</label>
+    <input type="text" id="registrationPurpose" name="registrationPurpose"
+           class="form-control"
+           placeholder="Purpose"
+           value="Gym Membership"
+           readonly
+           required
+           >
+  </div>
+
+  <!-- Desired Activities -->
+  <div class="col-md-6 col-lg-4">
+    <label for="desiredActivities" class="form-label">Desired Activities</label>
+    <input type="text" id="desiredActivities" name="desiredActivities"
+           class="form-control"
+           placeholder="Desired Activities"
+           value="Yoga, Swimming"
+           readonly
+           required
+           >
+  </div>
+
+  <!-- Membership ID -->
+  <div class="col-md-6 col-lg-4">
+    <label for="membershipId" class="form-label">Membership ID</label>
+    <input type="text" id="membershipId" name="membershipId"
+           class="form-control"
+           placeholder="Membership ID"
+           value="MBR-9876"
+           readonly
+           required
+           >
+  </div>
+
+  <!-- Active / Inactive Registration -->
+<div class="col-md-6 col-lg-4">
+  <label for="activeStatus" class="form-label">Active / Inactive Registration</label>
+  <input type="text" id="activeStatus" name="activeStatus"
+         class="form-control"
+         placeholder="Active or Inactive"
+         value="Active"
+         readonly
+         required
+        >
+</div>
+
+
+  <!-- Total Renewal -->
+  <div class="col-md-6 col-lg-4">
+    <label for="totalRenewal" class="form-label">Total Renewal</label>
+    <input type="number" id="totalRenewal" name="totalRenewal"
+           class="form-control"
+           placeholder="Total Renewal"
+           value="0"
+           readonly
+           required
+           >
+  </div>
+        
+
+        
+
+      </div>
+
+      <!-- Purpose -->
+
+      
+     
+
+      
+    </form>
+    </div>
+
+
+    <div class="tab-pane fade" id="subscription">
+       <div class="table-container2">
+                
+
+                <!-- Bootstrap Responsive Table -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 80px;">
+                                    <input type="checkbox" id="selectAll" class="form-check-input">
+                                    <button class="sl-no-btn">SI.No</button>
+                                </th>
+                                <th scope="col">Payment Reference</th>
+                                <th scope="col">Subscription Plan</th>
+                                <th scope="col">Subscription Date</th>
+                                <th scope="col">Amount Date</th>
+                                <th scope="col">Expiry Date</th>
+                                <th scope="col" style="width: 80px;">
+                                    Actions
+                                    <div class="dropdown d-inline">
+                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fi fi-rr-menu-dots-vertical"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
+                                                    <i class="fi fi-rr-trash me-2"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>1 Day - 10 SAR (All Ages)</td>
+                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td>05/09/2025</td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination Section -->
+                <div class="pagination-section">
+                    <div class="items-per-page">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Items per page</span>
+                        <select class="items-select">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+
+                    <div class="pagination-info">
+                        1-10 of 200 items
+                    </div>
+
+                    <div class="pagination-controls">
+                        <div class="page-info">1 of 44 pages</div>
+                        <div class="pagination-nav">
+                            <button class="pagination-btn" disabled>❮</button>
+                            <button class="pagination-btn">❯</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <div class="tab-pane fade" id="card">
+        <p>Card Duplicate Issue History content here...</p>
+    </div>
+</div>
+
+      
+            </div>
+
+            
+        </div>
+
+    </div>
+
+
+
+
+    <!-- jQuery (required by Bootstrap Select) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Bootstrap Select JS (compatible with Bootstrap 5) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+
+  <!-- Intl Tel Input JS (optional) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <!-- Your custom JS -->
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/member-registration.js"></script>
+  <script src="assets/js/membership-details.js"></script>
+
+
+
+
+
+
+ 
+
+
+
+</body>
+
+</html>
