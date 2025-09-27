@@ -49,15 +49,15 @@
                 <img src="assets/img/dashboard/member-registration.svg" alt="">
                 <span>Member Registration</span>
             </a>
-            <a class="nav-link" href="#subscriptions">
+            <a class="nav-link" href="subscription.html">
                 <img src="assets/img/dashboard/subscription.svg" alt="">
                 <span>Subscriptions</span>
             </a>
-            <a class="nav-link" href="#roles">
+            <a class="nav-link" href="roles.html">
                 <img src="assets/img/dashboard/roles.svg" alt="">
                 <span>Roles</span>
             </a>
-            <a class="nav-link" href="#locations">
+            <a class="nav-link" href="locations.html">
                 <img src="assets/img/dashboard/location.svg" alt="">
                 <span>Locations</span>
             </a>
@@ -419,7 +419,7 @@
 
                 <!-- Bootstrap Responsive Table -->
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-1">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 80px;">
@@ -432,7 +432,7 @@
                                 <th scope="col">Amount Date</th>
                                 <th scope="col">Expiry Date</th>
                                 <th scope="col" style="width: 80px;">
-                                    Actions
+                                    Status
                                     <div class="dropdown d-inline">
                                         <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
                                             aria-expanded="false">
@@ -571,12 +571,206 @@
             </div>
     </div>
     <div class="tab-pane fade" id="card">
-        <p>Card Duplicate Issue History content here...</p>
+       <div class="table-container2">
+                
+
+                <!-- Bootstrap Responsive Table -->
+                <div class="table-responsive">
+                    <table class="table table-hover table-2">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 80px;">
+                                    <input type="checkbox" id="selectAll2" class="form-check-input">
+                                    <button class="sl-no-btn">SI.No</button>
+                                </th>
+                                <th scope="col">Issued By</th>
+                                <th scope="col">Issued On</th>
+                                <th scope="col">Amount</th>
+                                
+                                <th scope="col" style="width: 80px;">
+                                    Payment Type
+                                    <div class="dropdown d-inline">
+                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fi fi-rr-menu-dots-vertical"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
+                                                    <i class="fi fi-rr-trash me-2"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #02</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #03</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #04</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #05</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                           <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #06</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #07</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #08</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                           <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #09</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                           <tr>
+                                <td><input type="checkbox" class="form-check-input row-check"> #10</td>
+                                <td>Agesz roy</td>
+                                
+                                <td>05/09/2025</td>
+                                <td>1000 SAR</td>
+                                <td>Cash</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination Section -->
+                <div class="pagination-section">
+                    <div class="items-per-page">
+                        <i class="bi bi-chevron-down"></i>
+                        <span>Items per page</span>
+                        <select class="items-select">
+                            <option value="10" selected>10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+
+                    <div class="pagination-info">
+                        1-10 of 200 items
+                    </div>
+
+                    <div class="pagination-controls">
+                        <div class="page-info">1 of 44 pages</div>
+                        <div class="pagination-nav">
+                            <button class="pagination-btn" disabled>❮</button>
+                            <button class="pagination-btn">❯</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 
       
             </div>
+
+             <div class="table-container duplicate-card" style="display:none;">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h1 class="form-title">Change Password</h1>
+                    <button type="submit" class="btn-add-new update-btn"><span>Add Payment & Print </span><i class="fi fi-rr-plus"></i></button>
+                </div>
+
+                      <form id="registrationForm">
+
+      <div class="row g-3">
+        
+
+        <div class="col-md-7 col-lg-7 col-12">
+          <label for="amount" class="form-label">Amount</label>
+          <input type="text" id="amount" name="amount" class="form-control" placeholder="Amount" value="500" required>
+        </div>
+        
+
+       
+
+        
+
+        
+
+        <div class="col-md-7 col-lg-7 col-12">
+          <label for="PaymentMethod" class="form-label">Payment Method</label>
+         
+  <select class="selectpicker" data-live-search="true" title="-- Please Select --">
+  <option data-tokens="cash">Cash</option>
+    <option data-tokens="credit card">Credit Card</option>
+    <option data-tokens="debit card">Debit Card</option>
+    <option data-tokens="bank transfer">Bank Transfer</option>
+    <option data-tokens="upi googlepay paytm">UPI / Mobile Payment</option>
+    <option data-tokens="paypal">PayPal</option>
+    <option data-tokens="cheque">Cheque</option>
+    <option data-tokens="giftcard">Gift Card / Voucher</option>
+</select>
+        </div>
+
+        
+
+       
+
+     
+
+</div>
+     
+
+      
+    </form>
+             </div>
 
             
         </div>

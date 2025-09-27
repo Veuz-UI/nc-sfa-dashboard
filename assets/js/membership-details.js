@@ -52,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /**
  * Initialize "Select All" functionality for a given table.
- * @param {string} selectAllId  The ID of the header checkbox
- * @param {string} tableSelector  The CSS selector for the table
+ * @param {string} selectAllId   The ID of the header checkbox
+ * @param {string} tableSelector The CSS selector for the table
  */
 function initSelectAllCheckboxes(selectAllId, tableSelector) {
     const selectAll = document.getElementById(selectAllId);
@@ -64,16 +64,16 @@ function initSelectAllCheckboxes(selectAllId, tableSelector) {
         return;
     }
 
-    // Only find checkboxes inside this table
+    // Get only checkboxes inside this specific table
     const checkboxes = table.querySelectorAll('.row-check');
 
-    // Handle header checkbox click
+    // 👉 When header checkbox changes
     selectAll.addEventListener('change', function () {
         checkboxes.forEach(cb => cb.checked = this.checked);
-        console.log(`${this.checked ? 'All selected' : 'All deselected'}`);
+        console.log(`${this.checked ? 'All selected' : 'All deselected'} in ${selectAllId}`);
     });
 
-    // Handle individual row checkbox changes
+    // 👉 When individual row checkboxes change
     checkboxes.forEach(cb => {
         cb.addEventListener('change', () => {
             const allChecked = [...checkboxes].every(c => c.checked);
@@ -85,7 +85,47 @@ function initSelectAllCheckboxes(selectAllId, tableSelector) {
     });
 }
 
-// ✅ Initialize for your members table
+// ✅ Initialize both tables after DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    initSelectAllCheckboxes('selectAll', '.table');
+    initSelectAllCheckboxes('selectAll', '.table-1');   // First table
+    initSelectAllCheckboxes('selectAll2', '.table-2');  // Second table
+});
+
+// Wait until the DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    const editBtn = document.getElementById('editBtn');
+    const memberPane = document.getElementById('member');
+
+    // Show button only if #member has the 'active' class
+    function toggleEditButton() {
+        if (memberPane.classList.contains('active')) {
+            editBtn.style.display = 'inline-block';  // Show
+        } else {
+            editBtn.style.display = 'none';         // Hide
+        }
+    }
+
+    // 👉 Check once on page load
+    toggleEditButton();
+
+    // 👉 Update on every tab switch
+    document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+        tab.addEventListener('shown.bs.tab', toggleEditButton);
+    });
+});
+
+// duplicate card
+
+document.addEventListener('DOMContentLoaded', function () {
+    const issueBtn = document.querySelector('.btn-issue');
+    const memberTable = document.querySelector('.table-container.member-details');
+    const duplicateCardTable = document.querySelector('.table-container.duplicate-card');
+
+    issueBtn.addEventListener('click', function () {
+        // Hide the member table
+        memberTable.style.display = 'none';
+
+        // Show the duplicate card table
+        duplicateCardTable.style.display = 'block';
+    });
 });
