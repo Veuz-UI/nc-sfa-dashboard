@@ -28,86 +28,58 @@
 
 <body>
 
-    <!-- Custom Modal -->
-        <div class="custom-modal" id="subscriptionModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Create Location</h2>
-                    <button type="button" class="modal-close" id="closeModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <form id="locationForm">
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="locationTitle" class="form-label">Location Title</label>
-            <input type="text" id="locationTitle" name="locationTitle" class="form-control" placeholder="Location Title" required>
-        </div>
-    </div>
+    <!-- Attendance Report Modal -->
+<div class="attendance-report-wrapper" id="attendance-report">
+  <div class="modal-container">
     
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="locationTitleArabic" class="form-label">Location Title(In Arabic)</label>
-            <input type="text" id="locationTitleArabic" name="locationTitleArabic" class="form-control" placeholder="Location Title(In Arabic)" required>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="adminEmail" class="form-label">Admin Email</label>
-            <input type="email" id="adminEmail" name="adminEmail" class="form-control" placeholder="Admin Email" required>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="locationCode" class="form-label">Location Code</label>
-            <input type="text" id="locationCode" name="locationCode" class="form-control" placeholder="Location Title(In Arabic)" required>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="gender" class="form-label">Gender</label>
-            <select class="selectpicker" id="gender" name="gender" required>
-                <option value="Male" selected>Male</option>
-                <option value="Female">Female</option>
-                
-            </select>
-        </div>
-        
-        <div class="col-md-4 mb-3">
-            <label for="city" class="form-label">City</label>
-            <select class="selectpicker" id="city" name="city" required data-live-search="true">
-                <option value="" disabled selected>-- Please Select --</option>
-                <option value="HafarAlBatin">Hafar Al-Batin</option>
-                <option value="Makkah">Makkah</option>
-                <option value="Jeddah">Jeddah</option>
-                <option value="Riyadh">Riyadh</option>
-            </select>
-        </div>
-        
-        <div class="col-md-4 mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select class="selectpicker" id="status" name="status" required>
-                <option value="Active" selected>Active</option>
-                <option value="Inactive">Inactive</option>
-            </select>
-        </div>
-    </div>
-</form>
-                </div>
-                
-                <div class="modal-footer">
-                    <button type="button" class="btn out-line-btn" onclick="clearForm()">Clear</button>
-                    <button type="submit" class="update-btn" id="saveBtn">Create</button>
-                    
-                                
-                </div>
+    <div class="modal-header">
+                <h3 class="modal-title">Title</h3>
+                <button id="attendance-report-close" class="close-btn">&times;</button>
             </div>
-        </div>
+<div class="modal-body">
+    <form id="attendance-report-form">
+      <div class="row">
+         <!-- Date of Birth Field -->
+                            <div class="col-md-6 mb-3 col-lg-6">
+                                <label for="from-date" class="form-label">From Date</label>
+                                <div class="input-group input-group2">
+                                    <input type="text" id="startDate" name="startDate" class="form-control" placeholder="Start Date">
+    <span class="calendar-icon"><i class="fi fi-rr-calendar-days"></i></span>
+                                </div>
+                            </div>
+
+                             <!-- Date of Birth Field -->
+                            <div class="col-md-6 mb-3 col-lg-6">
+                                <label for="to-date" class="form-label">To Date</label>
+                                <div class="input-group input-group2">
+                                     <input type="text" id="endDate" name="endDate" class="form-control" placeholder="End Date">
+    <span class="calendar-icon"><i class="fi fi-rr-calendar-days"></i></span>
+                                </div>
+                            </div>
+
+                          
+
+
+      </div>
+
+      
+
+      
+    </form>
+    </div>
+    <div class="modal-footer">
+                <!-- Submit Buttons -->
+                        <div class="row">
+                            <div class="col-12 text-start">
+                                <button type="button" class="btn out-line-btn" onclick="clearForm()">Clear</button>
+                                <button type="submit" class="update-btn">Apply Filter</button>
+                            </div>
+                        </div>
+            </div> 
+  </div>
+</div>
+
+    
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -139,13 +111,13 @@
                 <img src="assets/img/dashboard/roles.svg" alt="">
                 <span>Roles</span>
             </a>
-            <a class="nav-link active" href="locations.html">
+            <a class="nav-link" href="locations.html">
                 <img src="assets/img/dashboard/location.svg" alt="">
                 <span>Locations</span>
             </a>
             <!-- Reports with Dropdown -->
             <div class="nav-item">
-                <a class="nav-link dropdown-toggle-nav" href="#reports">
+                <a class="nav-link  active dropdown-toggle-nav" href="#reports">
                     <div style="display: flex; align-items: center;">
                         <img src="assets/img/dashboard/reports.svg" alt="">
                         <span>Reports</span>
@@ -153,7 +125,7 @@
                     <i class="fi fi-rr-angle-small-right dropdown-icon"></i>
                 </a>
                 <div class="dropdown-menu-nav">
-                    <a class="dropdown-item-nav" href="attendace-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                    <a class="dropdown-item-nav  active" href="attendace-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Report</span></a>
                     <a class="dropdown-item-nav" href="summary-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Summary Report</span></a>
@@ -295,156 +267,160 @@
             <div class="table-container">
                 <!-- Table Header -->
                 <div class="table-header">
-                    <h2 class="table-title">Customer Orders</h2>
+                    <h2 class="table-title">Attendance</h2>
                     <div class="table-controls">
                         <div class="search-box">
                             <input type="text" class="search-input" placeholder="Search...">
                             <i class="fi fi-rr-search"></i>
                         </div>
-                         <button type="submit" class="btn-add-new update-btn" id="addNewBtn"><span>Add New </span><i class="fi fi-rr-plus"></i></button>
-                        
+                        <!-- Filter trigger -->
+                        <!-- Filter trigger -->
+                        <span class="filter-text" id="attendance-report-btn"><span>Filter </span><i class="fi fi-rr-filter"></i></span>
+                       
+                        <div class="export-buttons-group">
+                <button class="btn export-btn btn-excel me-2">
+                    <i class="fi fi-rr-file-excel me-1"></i> Excel
+                </button>
+                
+                <button class="btn export-btn btn-pdf">
+                    <i class="fi fi-rr-file-pdf me-1"></i> PDF
+                </button>
+            </div>
                     </div>
                 </div>
 
+                
+
+                
+
                 <!-- Bootstrap Responsive Table -->
+
                 <div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 60px;">
-                    <input type="checkbox" id="selectAll" class="form-check-input">
-                    <span class="sl-no">Sl.No</span>
-                </th>
-                <th scope="col">Location Name</th>
-                <th scope="col">Location Name(Arabic)</th>
-                <th scope="col">City</th>
-                <th scope="col">Gender</th>
-                <th scope="col">Email</th>
-                <th scope="col">Location Code</th>
-                <th scope="col">Status</th>
-                <th scope="col" style="width: 80px;">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#01</span>
-                </td>
-                <td>18 Secondary School - Hafar Al-Batin</td>
-                <td>المدرسة الثامنة عشر الثانوية - حفر الباطن</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N20</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#02</span>
-                </td>
-                <td>34 Elementary Shool - Makkah</td>
-                <td>المدرسة الرابعة والثلاثون الابتدائية - مكة المكرمة</td>
-                <td>Makkah</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N34</td>
-                <td><span class="status-badge status-inactive">Inactive</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#03</span>
-                </td>
-                <td>86 Middle School - Jeddah</td>
-                <td>مدرسة 86 المتوسطة - جدة</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N27</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#04</span>
-                </td>
-                <td>384 Elementary School - Riyadh</td>
-                <td>المدرسة الابتدائية 384 - الرياض</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N35</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#05</span>
-                </td>
-                <td>Abi Ayoub Al-Ansari Secondary School</td>
-                <td>أبي أيوب الأنصاري الثانوية - مكة المكرمة</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N20</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-        </tbody>
-    </table>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col" style="width:60px;">
+          <input type="checkbox" id="selectAll" class="form-check-input">
+          <span class="sl-no">Sl.No</span>
+        </th>
+        <th scope="col">Location&nbsp;Code</th>
+        <th scope="col">Location&nbsp;Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Total&nbsp;Attendance</th>
+       <th scope="col" style="width: 80px;">
+                                    Actions
+                                    <div class="dropdown d-inline">
+                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fi fi-rr-menu-dots-vertical"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
+
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
+                                                    <i class="fi fi-rr-trash me-2"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input">
+          <span class="sl-no">#01</span>
+        </td>
+        <td>AB123369</td>
+        <td>18&nbsp;Secondary&nbsp;School&nbsp;-&nbsp;Hafar&nbsp;Al-Batin</td>
+        <td>10/05/2025</td>
+        <td>6,541</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-delete" title="Delete">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input">
+          <span class="sl-no">#02</span>
+        </td>
+        <td>AB54354</td>
+        <td>34&nbsp;Elementary&nbsp;School&nbsp;-&nbsp;Makkah</td>
+        <td>10/05/2025</td>
+        <td>984,531</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-delete" title="Delete">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input">
+          <span class="sl-no">#03</span>
+        </td>
+        <td>AB69784</td>
+        <td>86&nbsp;Middle&nbsp;School&nbsp;-&nbsp;Jeddah</td>
+        <td>10/05/2025</td>
+        <td>3,215</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-delete" title="Delete">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input">
+          <span class="sl-no">#04</span>
+        </td>
+        <td>AB6541</td>
+        <td>384&nbsp;Elementary&nbsp;School&nbsp;-&nbsp;Riyadh</td>
+        <td>10/05/2025</td>
+        <td>6,584</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-delete" title="Delete">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="checkbox" class="form-check-input">
+          <span class="sl-no">#05</span>
+        </td>
+        <td>AS512354</td>
+        <td>Abi&nbsp;Ayoub&nbsp;Al-Ansari&nbsp;Secondary&nbsp;School</td>
+        <td>10/05/2025</td>
+        <td>369</td>
+        <td>
+          <div class="action-buttons">
+            <button class="btn-icon btn-delete" title="Delete">
+              <i class="fi fi-rr-trash"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+                
                 <!-- Pagination Section -->
                 <div class="pagination-section">
                     <div class="items-per-page">
@@ -496,7 +472,8 @@
 
     <!-- Your custom JS -->
     <script src="assets/js/common.js"></script>
-    <script src="assets/js/subscription.js"></script>
+    <script src="assets/js/attendance.js"></script>
+    
 
 
 
