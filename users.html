@@ -315,14 +315,27 @@
                     <input type="checkbox" id="selectAll" class="form-check-input">
                     <span class="sl-no">Sl.No</span>
                 </th>
-                <th scope="col">Location Name</th>
-                <th scope="col">Location Name(Arabic)</th>
-                <th scope="col">City</th>
-                <th scope="col">Gender</th>
+                <th scope="col">Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Location Code</th>
+                
                 <th scope="col">Status</th>
-                <th scope="col" style="width: 80px;">Actions</th>
+                 <th scope="col" style="width: 80px;">
+                                    Actions
+                                    <div class="dropdown d-inline">
+                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <i class="fi fi-rr-menu-dots-vertical"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
+
+                                            <li>
+                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
+                                                    <i class="fi fi-rr-trash me-2"></i> Delete
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
             </tr>
         </thead>
         <tbody>
@@ -331,12 +344,8 @@
                     <input type="checkbox" class="form-check-input">
                     <span class="sl-no">#01</span>
                 </td>
-                <td>18 Secondary School - Hafar Al-Batin</td>
-                <td>المدرسة الثامنة عشر الثانوية - حفر الباطن</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N20</td>
+                <td>18 Secondary School – Hafar (Female) Admin</td>
+                <td>fa.18th@nc-sfa.com</td>
                 <td><span class="status-badge status-active">Active</span></td>
                 <td>
                                 <div class="action-buttons">
@@ -352,14 +361,10 @@
             <tr>
                 <td>
                     <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#02</span>
+                    <span class="sl-no">#01</span>
                 </td>
-                <td>34 Elementary Shool - Makkah</td>
-                <td>المدرسة الرابعة والثلاثون الابتدائية - مكة المكرمة</td>
-                <td>Makkah</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N34</td>
+                <td>18 Secondary School – Hafar (Female) Admin</td>
+                <td>fa.18th@nc-sfa.com</td>
                 <td><span class="status-badge status-inactive">Inactive</span></td>
                 <td>
                                 <div class="action-buttons">
@@ -372,75 +377,7 @@
                                 </div>
                             </td>
             </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#03</span>
-                </td>
-                <td>86 Middle School - Jeddah</td>
-                <td>مدرسة 86 المتوسطة - جدة</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N27</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#04</span>
-                </td>
-                <td>384 Elementary School - Riyadh</td>
-                <td>المدرسة الابتدائية 384 - الرياض</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N35</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no">#05</span>
-                </td>
-                <td>Abi Ayoub Al-Ansari Secondary School</td>
-                <td>أبي أيوب الأنصاري الثانوية - مكة المكرمة</td>
-                <td>Hafar Al-Batin</td>
-                <td>Female</td>
-                <td>fa.18th@inc-sfa.com</td>
-                <td>N20</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
+            
         </tbody>
     </table>
 </div>
