@@ -209,47 +209,47 @@ function initSelectAllCheckboxes() {
 // =====================================================================
 function initPhoneInputs() {
     const phoneInputField = document.querySelector("#phone");
-    let phoneInput;
 
-    const phoneInputConfig = {
+    if (!phoneInputField || !window.intlTelInput) return;
+
+    const phoneInput = window.intlTelInput(phoneInputField, {
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
         initialCountry: "sa",
-        separateDialCode: true,
-        nationalMode: false,
-        autoHideDialCode: false,
-        formatOnDisplay: true,
+        separateDialCode: false,      // ❗ Disable separate dial code
+        nationalMode: true,           // ❗ Input will show only the number (no +XXX)
+        autoHideDialCode: true,       // Hide dial code
+        formatOnDisplay: false,       // Keep raw input format
         autoPlaceholder: "aggressive",
         placeholderNumberType: "MOBILE",
         allowDropdown: true,
         preferredCountries: ["sa", "ae", "kw", "qa", "bh", "om"],
         customPlaceholder: function (selectedCountryPlaceholder) {
-            // Replaces digits with 'X' for a generic placeholder
-            return selectedCountryPlaceholder.replace(/[0-9]/g, "X"); 
+            // Show placeholder without numbers (e.g., 'XXX XXX XXXX')
+            return selectedCountryPlaceholder.replace(/[0-9]/g, "X");
         }
-    };
+    });
 
-    // Initialize phone input
-    if (phoneInputField && window.intlTelInput) {
-        phoneInput = window.intlTelInput(phoneInputField, phoneInputConfig);
+    // Validation
+    phoneInputField.addEventListener("blur", function () {
+        if (phoneInput.isValidNumber()) {
+            this.classList.remove("error");
+            this.classList.add("valid");
+        } else if (this.value.trim()) {
+            this.classList.add("error");
+            this.classList.remove("valid");
+        }
+    });
 
-        phoneInputField.addEventListener('blur', function () {
-            if (phoneInput.isValidNumber()) {
-                this.classList.remove('error');
-                this.classList.add('valid');
-            } else if (this.value.trim()) {
-                this.classList.add('error');
-                this.classList.remove('valid');
-            }
-        });
+    // Reset validation on input
+    phoneInputField.addEventListener("input", function () {
+        this.classList.remove("error", "valid");
+    });
 
-        phoneInputField.addEventListener('input', function () {
-            this.classList.remove('error', 'valid');
-        });
-    }
-
-    // Attach the instance to the window for access in processPhoneForm
+    // Expose instance globally if needed
     window.phoneInputInstance = phoneInput;
 }
+
+document.addEventListener("DOMContentLoaded", initPhoneInputs);
 
 // =====================================================================
 // Bootstrap Select
