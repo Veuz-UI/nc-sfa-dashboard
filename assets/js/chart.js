@@ -116,7 +116,7 @@ function initializeCharts() {
                 '6 Months - 270 SAR (Parents & 2+ kids)',
                 'Other'
             ],
-            colors: ['#48bb78', '#f56565', '#9f7aea', '#ed8936', '#a0aec0', '#4299e1', '#cbd5e0'],
+            colors: ['#14B37B', '#EF593A', '#9f7aea', '#ed8936', '#a0aec0', '#4299e1', '#3AEF7F'],
             plotOptions: {
                 pie: { donut: { size: '65%', labels: { show: false } } }
             },
