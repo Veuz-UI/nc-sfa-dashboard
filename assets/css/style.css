@@ -705,7 +705,6 @@
     padding: 2px 4px;
     border-radius: 50%;
     line-height: 1;
-    /* min-width: 18px; */
     text-align: center;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
