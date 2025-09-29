@@ -1548,7 +1548,7 @@ width: 100%;
 }
 
 .bootstrap-select .dropdown-menu{
-    height: 300px !important;
+    max-height: 300px !important;
 }
 
 /* Position calendar icon inside the input */
@@ -2525,16 +2525,14 @@ font-size: 18px;
 
             .registration-container {
                 padding: 20px 15px;
-                margin: 0 10px;
+                margin: 0 5px;
             }
 
             .form-title {
                 font-size: 15px;
             }
 
-            .form-control {
-                margin-bottom: 15px;
-            }
+           
 
             .member-details .tab-edit{
 flex-direction: column;

@@ -28,100 +28,7 @@
 
 <body>
 
-    <!-- Custom Modal -->
-        <div class="custom-modal  modal fade" id="subscriptionModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Create Location</h2>
-                    <button type="button" class="modal-close" id="closeModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <form id="locationForm">
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="Name" class="form-label">Name</label>
-            <input type="text" id="Name" name="Name" class="form-control" placeholder="Name" required>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-12 mb-4">
-            <label for="Email" class="form-label">Email</label>
-            <input type="email" id="Email" name="Email" class="form-control" placeholder="Email" required>
-        </div>
-    </div>
-    
-    <div class="col-md-12 mb-4">
-    <label for="adminPassword" class="form-label">Admin Password</label>
-    
    
-      <input type="password" 
-             id="adminPassword" 
-             name="adminPassword" 
-             class="form-control" 
-             placeholder="Enter Password"  value="123456123"
-             required>
-
-     
-  </div>
-  <!-- Preferred Location Field -->
-                            <div class="col-md-6 col-lg-12 col-12 mb-3">
-                                <label for="location" class="form-label">Select a Location</label>
-    <select class="selectpicker" id="location" name="location" data-live-search="true" title="Choose your preferred location..." required>
-        <option value="" disabled selected>Select a Location</option>
-
-        <option data-tokens="riyadh saudi arabia">Riyadh, Saudi Arabia</option>
-        <option data-tokens="jeddah saudi arabia">Jeddah, Saudi Arabia</option>
-        <option data-tokens="dammam saudi arabia">Dammam, Saudi Arabia</option>
-        <option data-tokens="dubai uae">Dubai, UAE</option>
-        <option data-tokens="abu dhabi uae">Abu Dhabi, UAE</option>
-        <option data-tokens="kuwait city kuwait">Kuwait City, Kuwait</option>
-        <option data-tokens="doha qatar">Doha, Qatar</option>
-        <option data-tokens="manama bahrain">Manama, Bahrain</option>
-        <option data-tokens="muscat oman">Muscat, Oman</option>
-    </select>
-                            </div>
-    
-    
-    
-    <div class="row">
-        
-        
-         <div class="col-md-6 mb-3 col-12">
-  <label for="role" class="form-label">Role</label>
-  <select class="selectpicker" id="role" name="role" required data-live-search="true">
-      <option value="" disabled selected>-- Please Select Role --</option>
-      <option value="admin">Admin</option>
-      <option value="superadmin">Super Admin</option>
-      <option value="user">User</option>
-      <option value="manager">Manager</option>
-      <option value="viewer">Viewer</option>
-  </select>
-</div>
-
-        
-        <div class="col-md-6 mb-3">
-            <label for="status" class="form-label">Status</label>
-            <select class="selectpicker" id="status" name="status" required>
-                <option value="Active" selected>Active</option>
-                <option value="Inactive">Inactive</option>
-            </select>
-        </div>
-    </div>
-</form>
-                </div>
-                
-                <div class="modal-footer  d-flex gap-3">
-                    <button type="button" class="btn out-line-btn" data-bs-dismiss="modal">Back</button>
-                    <button type="submit" class="update-btn" id="saveBtn">Create</button>
-                    
-                                
-                </div>
-            </div>
-        </div>
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -177,11 +84,11 @@
                 </div>
             </div>
 
-            <a class="nav-link active" href="users.html">
+            <a class="nav-link" href="users.html">
                 <img src="assets/img/dashboard/users.svg" alt="">
                 <span>Users</span>
             </a>
-            <a class="nav-link" href="settings.html">
+            <a class="nav-link active" href="settings.html">
                 <img src="assets/img/dashboard/settings.svg" alt="">
                 <span>Settings</span>
             </a>
@@ -311,125 +218,22 @@
                 <div class="table-header">
                     <h2 class="table-title">Customer Orders</h2>
                     <div class="table-controls">
-                        <div class="search-box">
-                            <input type="text" class="search-input" placeholder="Search...">
-                            <i class="fi fi-rr-search"></i>
-                        </div>
-                         <button type="submit" class="btn-add-new update-btn" id="addNewBtn"><span>Add New </span><i class="fi fi-rr-plus"></i></button>
+                        
+                         <button type="submit" class="btn-add-new update-btn" id="addNewBtn"><span>Create </span><i class="fi fi-rr-plus"></i></button>
                         
                     </div>
                 </div>
+                <form id="SettingsForm" >
+                        <div class="row">
+                            <!-- Name Field -->
+                            <div class="col-md-6 mb-3 col-lg-4 col-12">
+                                <label for="Url" class="form-label">Biostar API Base URL</label>
+                                <input type="text" id="Url" name="Url" class="form-control" placeholder="Url" required value="10.244.10.185">
+                            </div>
+                            </div>
+                        </form>
 
-                <!-- Bootstrap Responsive Table -->
-                <div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col" style="width: 60px;">
-                    <input type="checkbox" id="selectAll" class="form-check-input">
-                    <span class="sl-no text-start">Sl.No</span>
-                </th>
-                <th scope="col" class=" text-start">Name</th>
-                <th scope="col" class=" text-start">Email</th>
-                
-                <th scope="col text-start">Status</th>
-                 <th scope="col" style="width: 80px;">
-                                    Actions
-                                    <div class="dropdown d-inline">
-                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fi fi-rr-menu-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
-
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
-                                                    <i class="fi fi-rr-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no  text-start" >#01</span>
-                </td>
-                <td class=" text-start">18 Secondary School – Hafar (Female) Admin</td>
-                <td class=" text-start">fa.18th@nc-sfa.com</td>
-                <td><span class="status-badge status-active">Active</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="checkbox" class="form-check-input">
-                    <span class="sl-no text-start">#01</span>
-                </td>
-                <td class=" text-start">18 Secondary School – Hafar (Female) Admin</td>
-                <td class=" text-start">fa.18th@nc-sfa.com</td>
-                <td><span class="status-badge status-inactive">Inactive</span></td>
-                <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-            </tr>
-            
-        </tbody>
-    </table>
-</div>
-
-                <!-- Pagination Section -->
-                <div class="pagination-section">
-                    <div class="table-footer-page d-flex gap-3 align-items-center">
-                    <div class="items-per-page">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Items per page</span>
-                        <select class="items-select">
-                            <option value="10" selected>10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-
-                    <div class="pagination-info">
-                        1-10 of 200 items
-                    </div>
-                    </div>
-
-
-                    <div class="pagination-controls">
-                        <select class="items-select">
-                            <option value="1" selected>1</option>
-                            <option value="5">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <div class="page-info"> of 44 pages</div>
-                        <div class="pagination-nav">
-                            <button class="pagination-btn" disabled>❮</button>
-                            <button class="pagination-btn">❯</button>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
         </div>
 
