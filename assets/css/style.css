@@ -5,7 +5,7 @@
 
 
 :root {
-            --sidebar-width: 250px;
+            --sidebar-width: 240px;
             --sidebar-collapsed-width: 80px;
             --topbar-height: 70px;
             --primary-color: #EF593A;
@@ -172,13 +172,13 @@
         }
 
         /* Collapsed sidebar dropdown styles */
-        .sidebar.collapsed .dropdown-menu-nav {
+        /* .sidebar.collapsed .dropdown-menu-nav {
             display: none;
         }
 
         .sidebar.collapsed .dropdown-toggle-nav::after {
             display: none;
-        }
+        } */
 
         /* Sidebar dropdown styles */
         .sidebar .dropdown-menu-nav {
@@ -220,7 +220,7 @@
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
+            padding: 10px;
             color: var(--text-dark);
             text-decoration: none;
             transition: all 0.3s ease;
