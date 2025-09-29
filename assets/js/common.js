@@ -342,5 +342,7 @@ function initializeCameraFeatures() {
 
 
 
+
+
 // Initialize camera after DOM is ready
 document.addEventListener('DOMContentLoaded', initializeCameraFeatures);

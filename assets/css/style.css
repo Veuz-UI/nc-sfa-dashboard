@@ -368,7 +368,7 @@
             
         }
 
-        .search-box input {
+        .search-box input, .search-box2 input {
             padding: 8px 15px 8px 40px;
             border-radius: 25px;
             border: none;
@@ -389,11 +389,7 @@
             color: #999;
         }
 
-        @media (max-width: 992px) {
-            .search-box input {
-                width: 200px;
-            }
-        }
+       
 
         /* screenshort */
 
@@ -1492,10 +1488,7 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .registration-container {
-                padding: 25px 20px;
-                margin: 0 15px;
-            }
+            
 
             .form-title {
                 font-size: 16px;
@@ -1511,30 +1504,12 @@
             }
 
             .update-btn {
-                width: 100%;
                 padding: 14px;
                 font-size: 15px;
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 10px 0;
-            }
-
-            .registration-container {
-                padding: 20px 15px;
-                margin: 0 10px;
-            }
-
-            .form-title {
-                font-size: 15px;
-            }
-
-            .form-control {
-                margin-bottom: 15px;
-            }
-        }
+        
 
 
         /* membership page */
@@ -1902,7 +1877,7 @@ width: 100%;
             }
 
             .table-controls {
-                justify-content: space-between;
+                justify-content: end;
             }
 
             .search-input {
@@ -1912,7 +1887,6 @@ width: 100%;
 
             .table-responsive {
                 border-radius: 0;
-                margin: 0 -20px;
                 border-left: none;
                 border-right: none;
             }
@@ -1924,7 +1898,10 @@ width: 100%;
             }
 
             .pagination-controls {
-                justify-content: space-between;
+                justify-content:center;
+            }
+            .table-footer-page{
+                justify-content: center;
             }
         }
 
@@ -1949,7 +1926,6 @@ width: 100%;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
             /* background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px); */
             display: flex;
@@ -2023,6 +1999,8 @@ width: 100%;
         /* Modal Body */
         .modal-body {
             padding: 28px;
+            overflow-y: scroll;
+            max-height: 500px;
         }
 
         .modal-body p {
@@ -2053,6 +2031,10 @@ width: 100%;
         .hidden {
             display: none;
         }
+
+       
+
+       
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -2377,6 +2359,10 @@ color: #FFDCD5;
             background-color: #FFFFFF29;
         }
 
+        .attendace-card .col-xl-3{
+            padding: 5px;
+        }
+
         .attendace-card .stat-title{
             color: #ffffff;
         }
@@ -2510,4 +2496,64 @@ font-size: 18px;
     box-shadow: none;
     color: #959FA8;
 }
+
+/* responsive */
+
+ @media (max-width: 568px) {
+            .search-box input {
+                width: 150px;
+            }
+            .upload-popup{
+                right: -85px;
+            }
+            #chart, #chart3{
+                width: auto;
+                height: auto;
+            }
+            .chart-title{
+                font-size: 16px;
+            }
+            td.source-text{
+                font-size: 12px;
+            }
+            .table th{
+                font-size: 13px;
+            }
+            .table td {
+                font-size: 12px;
+            }
+
+            .registration-container {
+                padding: 20px 15px;
+                margin: 0 10px;
+            }
+
+            .form-title {
+                font-size: 15px;
+            }
+
+            .form-control {
+                margin-bottom: 15px;
+            }
+
+            .member-details .tab-edit{
+flex-direction: column;
+            }
+            .member-details .nav-link{
+                padding: 5px;
+                font-size: 12px;
+            }
+            .member-details .btn-group .btn{
+                padding: 3px 10px;
+            }
+            a.text-danger{
+                font-size: 11px;
+            }
+            .checkbox-group{
+                gap: 8px 30px;
+            }
+            .permissions-table tbody td:first-child{
+                font-size: 12px;
+            }
+        }
    
