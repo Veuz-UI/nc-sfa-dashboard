@@ -694,7 +694,7 @@
   font-size: 18px;
 }
 
-.notif-badge {
+span.notif-badge {
     position: absolute;
     top: 2px;
     right: 2px;
