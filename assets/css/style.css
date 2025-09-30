@@ -1958,8 +1958,8 @@ width: 100%;
     /* Modal Overlay */
         .modal-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
             /* background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(5px); */
@@ -1971,6 +1971,7 @@ width: 100%;
             visibility: hidden;
             transition: all 0.3s ease;
             z-index: 1111;
+            transform: translate(-50%, -50%);
         }
 
         .modal-overlay.active {
@@ -1981,6 +1982,10 @@ width: 100%;
         .iti__country-list {
             position: relative;
             z-index: 111111111 !important;
+            white-space: unset;
+        }
+        .dropdown-menu-end{
+            transform: translate(0, 20px) !important;
         }
 
         /* Modal Container */
