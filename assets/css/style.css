@@ -2598,12 +2598,19 @@ font-size: 18px;
             .member-details .tab-edit{
 flex-direction: column;
             }
+            .member-details .nav{
+                justify-content: center;
+            }
+            .member-details .btn-group{
+                white-space: nowrap;
+            }
             .member-details .nav-link{
                 padding: 5px;
                 font-size: 12px;
             }
             .member-details .btn-group .btn{
                 padding: 3px 10px;
+                font-size: 12px;
             }
             a.text-danger{
                 font-size: 11px;
