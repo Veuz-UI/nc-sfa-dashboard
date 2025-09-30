@@ -2588,6 +2588,11 @@ font-size: 18px;
                 font-size: 15px;
             }
 
+            .breadcrumb-left span {
+    font-size: 11px;
+    color: #374151;
+}
+
            
 
             .member-details .tab-edit{
