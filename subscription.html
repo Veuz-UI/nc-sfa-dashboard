@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports For All - Dashboard</title>
+    <title>Sports For All - Subscription</title>
 
     <link rel="icon" href="assets/img/logos/sports-for-all-small-logo.png">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Bootstrap Select CSS (compatible with Bootstrap 5) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
 
-<!-- Intl Tel Input CSS (optional) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet">
-  <!-- Flatpickr CSS (date picker library) -->
-  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <!-- Intl Tel Input CSS (optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet">
+    <!-- Flatpickr CSS (date picker library) -->
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- Font Awesome (optional) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -29,90 +30,96 @@
 <body>
 
     <!-- Custom Modal -->
-        <div class="custom-modal" id="subscriptionModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="modal-title">Add New Subscription Plan</h2>
-                    <button type="button" class="modal-close" id="closeModal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <form id="subscriptionForm">
-                            <div class="row">
-                                <!-- Plan Title Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="planTitle" class="form-label">Plan Title</label>
-                                    <input type="text" id="planTitle" name="planTitle" class="form-control" placeholder="Enter Plan Title" required>
-                                </div>
-                                
-                                <!-- Freeze Period Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="freezePeriod" class="form-label">Freeze Period</label>
-                                    <input type="number" id="freezePeriod" name="freezePeriod" class="form-control" placeholder="Enter Freeze Period (In Days)" required>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <!-- Plan Title (In Arabic) Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="planTitleArabic" class="form-label">Plan Title (In Arabic)</label>
-                                    <input type="text" id="planTitleArabic" name="planTitleArabic" class="form-control" placeholder="Enter Plan Title (In Arabic)" required>
-                                </div>
-                                
-                                <!-- Status Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="status" class="form-label">Status</label>
-                                    <select class="selectpicker" id="status" name="status" required data-live-search="true">
-                                        <option value="" disabled selected>-- Please Select --</option>
-                                        <option value="DailyTicket">Daily Ticket</option>
-                                        <option value="BigFamily">Big Family</option>
-                                        <option value="SmallFamily">Small Family</option>
-                                        <option value="Youth">Youth (Over 15)</option>
-                                        <option value="Kids">Kids (6-15)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <!-- Amount Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="amount" class="form-label">Amount</label>
-                                    <input type="number" id="amount" name="amount" class="form-control" placeholder="Enter Subscription Amount" step="0.01" required>
-                                </div>
-                                
-                                <!-- Plan Status Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="planStatus" class="form-label">Plan Status</label>
-                                    <select class="selectpicker" id="planStatus" name="planStatus" required data-live-search="true">
-                                        <option value="" disabled>-- Please Select --</option>
-                                        <option value="active" selected>Active</option>
-                                        <option value="inactive">Inactive</option>
-                                        <option value="draft">Draft</option>
-                                        <option value="archived">Archived</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <!-- Validity Period Field -->
-                                <div class="col-md-6 mb-3">
-                                    <label for="validityPeriod" class="form-label">Validity Period</label>
-                                    <input type="number" id="validityPeriod" name="validityPeriod" class="form-control" placeholder="Enter Validity Period (In Days)" required>
-                                </div>
-                            </div>
-                        </form>
-                </div>
-                
-                <div class="modal-footer  d-flex gap-3">
-                    <button type="button" class="btn out-line-btn" onclick="clearForm()">Clear</button>
-                    <button type="submit" class="update-btn" id="saveBtn">Create</button>
-                    
-                                
-                </div>
+    <div class="custom-modal" id="subscriptionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Subscription Plan</h2>
+                <button type="button" class="modal-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="subscriptionForm">
+                    <div class="row">
+                        <!-- Plan Title Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="planTitle" class="form-label">Plan Title</label>
+                            <input type="text" id="planTitle" name="planTitle" class="form-control"
+                                placeholder="Enter Plan Title" required>
+                        </div>
+
+                        <!-- Freeze Period Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="freezePeriod" class="form-label">Freeze Period</label>
+                            <input type="number" id="freezePeriod" name="freezePeriod" class="form-control"
+                                placeholder="Enter Freeze Period (In Days)" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Plan Title (In Arabic) Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="planTitleArabic" class="form-label">Plan Title (In Arabic)</label>
+                            <input type="text" id="planTitleArabic" name="planTitleArabic" class="form-control"
+                                placeholder="Enter Plan Title (In Arabic)" required>
+                        </div>
+
+                        <!-- Status Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="status" class="form-label">Status</label>
+                            <select class="selectpicker" id="status" name="status" required data-live-search="true">
+                                <option value="" disabled selected>-- Please Select --</option>
+                                <option value="DailyTicket">Daily Ticket</option>
+                                <option value="BigFamily">Big Family</option>
+                                <option value="SmallFamily">Small Family</option>
+                                <option value="Youth">Youth (Over 15)</option>
+                                <option value="Kids">Kids (6-15)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Amount Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="number" id="amount" name="amount" class="form-control"
+                                placeholder="Enter Subscription Amount" step="0.01" required>
+                        </div>
+
+                        <!-- Plan Status Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="planStatus" class="form-label">Plan Status</label>
+                            <select class="selectpicker" id="planStatus" name="planStatus" required
+                                data-live-search="true">
+                                <option value="" disabled>-- Please Select --</option>
+                                <option value="active" selected>Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="draft">Draft</option>
+                                <option value="archived">Archived</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Validity Period Field -->
+                        <div class="col-md-6 mb-3">
+                            <label for="validityPeriod" class="form-label">Validity Period</label>
+                            <input type="number" id="validityPeriod" name="validityPeriod" class="form-control"
+                                placeholder="Enter Validity Period (In Days)" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer  d-flex gap-3">
+                <button type="button" class="btn out-line-btn" onclick="clearForm()">Clear</button>
+                <button type="submit" class="update-btn" id="saveBtn">Create</button>
+
+
             </div>
         </div>
+    </div>
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -158,11 +165,14 @@
                     <i class="fi fi-rr-angle-small-right dropdown-icon"></i>
                 </a>
                 <div class="dropdown-menu-nav">
-                    <a class="dropdown-item-nav" href="attendace-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                    <a class="dropdown-item-nav" href="attendace-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Report</span></a>
-                    <a class="dropdown-item-nav" href="summary-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                    <a class="dropdown-item-nav" href="summary-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Summary Report</span></a>
-                    <a class="dropdown-item-nav" href="consolidate-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Consolidate
+                    <a class="dropdown-item-nav" href="consolidate-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Consolidate
                             Report</span></a>
 
                 </div>
@@ -250,10 +260,10 @@
                     </div>
                 </div>
             </div>
-             <button title="Notifications" class="notification">
-  <i class="fi fi-rr-bell"></i>
-  <span class="notif-badge">3</span>
-</button>
+            <button title="Notifications" class="notification">
+                <i class="fi fi-rr-bell"></i>
+                <span class="notif-badge">3</span>
+            </button>
 
 
             <!-- Profile Dropdown -->
@@ -307,8 +317,9 @@
                             <input type="text" class="search-input" placeholder="Search...">
                             <i class="fi fi-rr-search"></i>
                         </div>
-                         <button type="submit" class="btn-add-new update-btn" id="addNewBtn"><span>Add New </span><i class="fi fi-rr-plus"></i></button>
-                        
+                        <button type="submit" class="btn-add-new update-btn" id="addNewBtn"><span>Add New </span><i
+                                class="fi fi-rr-plus"></i></button>
+
                     </div>
                 </div>
 
@@ -319,14 +330,14 @@
                             <tr>
 
                                 <th scope="col" style="width: 60px;">
-                                <input type="checkbox" id="selectAll" class="form-check-input">
-                                <span class="sl-no">Sl.No</span>
-                            </th>
-                            <th scope="col"  class="text-start">Plan Title</th>
-                            <th scope="col" class="text-start">Plan Title(Arabic)</th>
-                            <th scope="col">Validity Period</th>
-                            <th scope="col">Freeze Period</th>
-                            <th scope="col">Status</th>
+                                    <input type="checkbox" id="selectAll" class="form-check-input">
+                                    <span class="sl-no">Sl.No</span>
+                                </th>
+                                <th scope="col" class="text-start">Plan Title</th>
+                                <th scope="col" class="text-start">Plan Title(Arabic)</th>
+                                <th scope="col">Validity Period</th>
+                                <th scope="col">Freeze Period</th>
+                                <th scope="col">Status</th>
                                 <th scope="col" style="width: 80px;">
                                     Actions
                                     <div class="dropdown d-inline">
@@ -347,277 +358,287 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#01</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Day - 10 SAR (All Ages)</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">تذكرة يومية - 10 ريال (جميع الفئات العمرية)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#02</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month - SAR 60 (Parent & 2 Kids)</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 60 ريال للأطفال المصحوبين والأطفال (أب آخر وطفلين أو آخر)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#03</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 100 SAR (Parent & 2+ kids )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 100 ريال للأطفال المصحوبين وأكثر من طفلين</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#04</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 120 SAR (Parent & 2 kids )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 120 ريال للأطفال المصحوبين وأب آخر وطفلين أو آخر</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-inactive">Inactive</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#05</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 20 SAR (Children age from 6-15 )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 20 ريال للأطفال (6-15 سنة)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#06</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 200 SAR (Parent & 2+ kids )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 200 ريال للأطفال المصحوبين وأكثر من طفلين</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#07</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 30 SAR (People over 15 )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 30 ريال (الأشخاص فوق 15 سنة)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#08</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 40 SAR (Children age from 6-15 )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 40 ريال للأطفال (6-15 سنة)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-inactive">Inactive</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#09</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">1 Month- 60 SAR (People over 15)</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">1 شهر - 60 ريال (الأشخاص فوق 15 سنة)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-inactive">Inactive</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
-                                <span class="sl-no">#10</span>
-                            </td>
-                            <td>
-                                <div class="plan-title">3 Months- 144 SAR (People over 15 )</div>
-                            </td>
-                            <td class="text-start">
-                                <span class=" plan-title-arabic arabic-text">تذكرة موسمية - 144 ريال (جميع الفئات العمرية)</span>
-                            </td>
-                            <td><span class="validity-period">1 Days</span></td>
-                            <td><span class="freeze-period">10</span></td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn-icon btn-edit-item" title="Edit">
-                                        <i class="fi fi-rr-edit"></i>
-                                    </button>
-                                    <button class="btn-icon btn-delete" title="Delete">
-                                        <i class="fi fi-rr-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#01</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Day - 10 SAR (All Ages)</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">تذكرة يومية - 10 ريال (جميع الفئات
+                                        العمرية)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#02</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month - SAR 60 (Parent & 2 Kids)</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 60 ريال للأطفال المصحوبين
+                                        والأطفال (أب آخر وطفلين أو آخر)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#03</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 100 SAR (Parent & 2+ kids )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 100 ريال للأطفال المصحوبين
+                                        وأكثر من طفلين</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#04</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 120 SAR (Parent & 2 kids )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 120 ريال للأطفال المصحوبين وأب
+                                        آخر وطفلين أو آخر</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#05</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 20 SAR (Children age from 6-15 )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 20 ريال للأطفال (6-15
+                                        سنة)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#06</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 200 SAR (Parent & 2+ kids )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 200 ريال للأطفال المصحوبين
+                                        وأكثر من طفلين</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#07</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 30 SAR (People over 15 )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 30 ريال (الأشخاص فوق 15
+                                        سنة)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#08</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 40 SAR (Children age from 6-15 )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 40 ريال للأطفال (6-15
+                                        سنة)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#09</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">1 Month- 60 SAR (People over 15)</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">1 شهر - 60 ريال (الأشخاص فوق 15
+                                        سنة)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-inactive">Inactive</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="form-check-input">
+                                    <span class="sl-no">#10</span>
+                                </td>
+                                <td>
+                                    <div class="plan-title">3 Months- 144 SAR (People over 15 )</div>
+                                </td>
+                                <td class="text-start">
+                                    <span class=" plan-title-arabic arabic-text">تذكرة موسمية - 144 ريال (جميع الفئات
+                                        العمرية)</span>
+                                </td>
+                                <td><span class="validity-period">1 Days</span></td>
+                                <td><span class="freeze-period">10</span></td>
+                                <td><span class="status-badge status-active">Active</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon btn-edit-item" title="Edit">
+                                            <i class="fi fi-rr-edit"></i>
+                                        </button>
+                                        <button class="btn-icon btn-delete" title="Delete">
+                                            <i class="fi fi-rr-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
                 <!-- Pagination Section -->
                 <div class="pagination-section">
                     <div class="table-footer-page d-flex gap-3 align-items-center">
-                    <div class="items-per-page">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Items per page</span>
-                        <select class="items-select">
-                            <option value="10" selected>10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
+                        <div class="items-per-page">
+                            <i class="bi bi-chevron-down"></i>
+                            <span>Items per page</span>
+                            <select class="items-select">
+                                <option value="10" selected>10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
 
-                    <div class="pagination-info">
-                        1-10 of 200 items
-                    </div>
+                        <div class="pagination-info">
+                            1-10 of 200 items
+                        </div>
                     </div>
 
 
@@ -652,10 +673,10 @@
     <!-- Bootstrap Select JS (compatible with Bootstrap 5) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
 
- <!-- Intl Tel Input JS (optional) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Intl Tel Input JS (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 
 

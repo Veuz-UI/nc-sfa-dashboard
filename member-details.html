@@ -4,28 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sports For All - Dashboard</title>
+    <title>Sports For All - Member Details</title>
 
     <link rel="icon" href="assets/img/logos/sports-for-all-small-logo.png">
-     <!-- Bootstrap 5 CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap Select CSS (compatible with Bootstrap 5) -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
+    <!-- Bootstrap Select CSS (compatible with Bootstrap 5) -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css">
 
-  <!-- Font Awesome (optional) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Font Awesome (optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
-  <!-- Intl Tel Input CSS (optional) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet">
-  <!-- Flatpickr CSS (date picker library) -->
-  <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
-   <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Intl Tel Input CSS (optional) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet">
+    <!-- Flatpickr CSS (date picker library) -->
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-   
+
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
 
@@ -71,11 +72,14 @@
                     <i class="fi fi-rr-angle-small-right dropdown-icon"></i>
                 </a>
                 <div class="dropdown-menu-nav">
-                    <a class="dropdown-item-nav" href="attendace-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                    <a class="dropdown-item-nav" href="attendace-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Report</span></a>
-                    <a class="dropdown-item-nav" href="summary-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Attendance
+                    <a class="dropdown-item-nav" href="summary-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Attendance
                             Summary Report</span></a>
-                    <a class="dropdown-item-nav" href="consolidate-report.html"><i class="fi fi-rr-angle-small-right"></i><span>Consolidate
+                    <a class="dropdown-item-nav" href="consolidate-report.html"><i
+                            class="fi fi-rr-angle-small-right"></i><span>Consolidate
                             Report</span></a>
 
                 </div>
@@ -163,10 +167,10 @@
                     </div>
                 </div>
             </div>
-             <button title="Notifications" class="notification">
-  <i class="fi fi-rr-bell"></i>
-  <span class="notif-badge">3</span>
-</button>
+            <button title="Notifications" class="notification">
+                <i class="fi fi-rr-bell"></i>
+                <span class="notif-badge">3</span>
+            </button>
 
 
             <!-- Profile Dropdown -->
@@ -213,585 +217,550 @@
 
             <div class="table-container member-details">
                 <div class="d-flex justify-content-between align-items-center mb-3 tab-edit">
-    <!-- Left: Nav Tabs -->
-    <ul class="nav nav-tabs">
-        <li class="nav-item">
-            <button class="nav-link active" id="member-tab" data-bs-toggle="tab" data-bs-target="#member">Member Details</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" id="subscription-tab" data-bs-toggle="tab" data-bs-target="#subscription">Subscription History</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" id="card-tab" data-bs-toggle="tab" data-bs-target="#card">Card Duplicate Issue History</button>
-        </li>
-    </ul>
+                    <!-- Left: Nav Tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="member-tab" data-bs-toggle="tab"
+                                data-bs-target="#member">Member Details</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="subscription-tab" data-bs-toggle="tab"
+                                data-bs-target="#subscription">Subscription History</button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="card-tab" data-bs-toggle="tab" data-bs-target="#card">Card
+                                Duplicate Issue History</button>
+                        </li>
+                    </ul>
 
-    <!-- Right: Action Buttons -->
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-sub">Subscribe</button>
-        <button type="button" class="btn btn-print">Print Card</button>
-        <button type="button" id="editBtn" class="btn btn-edit">Edit</button>
-        <button type="button" class="btn btn-issue">Issue Duplicate Card</button>
-    </div>
-</div>
-
-<!-- Tab Content -->
-<div class="tab-content">
-    <div class="tab-pane fade show active" id="member">
-        <form id="Member-details-form">
-
-      <div class="row g-3">
-        <div class="col-md-6 col-lg-4">
-          <label for="fullName" class="form-label">Full Name</label>
-          <input type="text" id="fullName" name="fullName"
-           class="form-control"
-           placeholder="Full Name"
-           value="شموخ صالح ال هرمس"
-           readonly data-editable="true" required>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Email@example.com" value="am_shmook@hotmail.com" readonly data-editable="true" required>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <label for="phone" class="form-label">Phone Number</label>
-          <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 0554437892" value="0554437892" readonly data-editable="true" required>
-        </div>
-        <div class="col-md-6 col-lg-4">
-          <label for="guardianNumber" class="form-label">Guardian Number</label>
-          <input type="tel" id="guardianNumber" name="guardianNumber" class="form-control" placeholder="+91 0554437892" value="0554437892" readonly data-editable="true" required>
-        </div>
-        <div class="col-md-6 col-lg-4">
-  <label for="gender" class="form-label">Gender</label>
-    <select id="gender" name="gender"
-            class="selectpicker"
-            required
-            disabled
-            data-editable="true">
-      <option value="">Select</option>
-      <option value="Male" selected>Male</option>
-      <option value="Female">Female</option>
-    </select>
-</div>
-
-        <div class="col-md-6 col-lg-4">
-          <label for="idNumber" class="form-label">ID Number</label>
-          <input type="text" id="idNumber" name="idNumber" class="form-control" placeholder="ID Number" required>
-        </div>
-        <!-- Date of Registration -->
-  <div class="col-md-6 col-lg-4">
-    <label for="dateofbirth" class="form-label">Date of Registration</label>
-    <input type="date" id="dateofbirth" name="dateofbirth"
-           class="form-control"
-           value="2024-01-10"
-           readonly
-           required
-           >
-  </div>
-
-   <!-- Nationality -->
-  <div class="col-md-6 col-lg-4">
-    <label for="nationality" class="form-label">Nationality</label>
-    <input type="text" id="nationality" name="nationality"
-           class="form-control"
-           placeholder="Nationality"
-           value="Indian"
-           readonly
-           required
-           >
-  </div>
-  <!-- City -->
-  <div class="col-md-6 col-lg-4">
-    <label for="city" class="form-label">City</label>
-    <input type="text" id="city" name="city"
-           class="form-control"
-           placeholder="City"
-           value="Bengaluru"
-           readonly
-           required
-           >
-  </div>
-
-  <!-- Preferred Location -->
-  <div class="col-md-6 col-lg-4">
-    <label for="preferredLocation" class="form-label">Preferred Location</label>
-    <input type="text" id="preferredLocation" name="preferredLocation"
-           class="form-control"
-           placeholder="Preferred Location"
-           value="Koramangala"
-           readonly
-           required
-           >
-  </div>
-
-  <!-- Vaccinated -->
-  <div class="col-md-6 col-lg-4">
-    <label for="vaccinated" class="form-label">Vaccinated</label>
-    <input type="text" id="vaccinated" name="vaccinated"
-           class="form-control"
-           placeholder="select"
-           value="Yes"
-           readonly
-           required
-           >
-    
-  </div>
-<!-- Registration Purpose -->
-  <div class="col-md-6 col-lg-4">
-    <label for="registrationPurpose" class="form-label">Registration Purpose</label>
-    <input type="text" id="registrationPurpose" name="registrationPurpose"
-           class="form-control"
-           placeholder="Purpose"
-           value="Gym Membership"
-           readonly
-           required
-           >
-  </div>
-
-  <!-- Desired Activities -->
-  <div class="col-md-6 col-lg-4">
-    <label for="desiredActivities" class="form-label">Desired Activities</label>
-    <input type="text" id="desiredActivities" name="desiredActivities"
-           class="form-control"
-           placeholder="Desired Activities"
-           value="Yoga, Swimming"
-           readonly
-           required
-           >
-  </div>
-
-  <!-- Membership ID -->
-  <div class="col-md-6 col-lg-4">
-    <label for="membershipId" class="form-label">Membership ID</label>
-    <input type="text" id="membershipId" name="membershipId"
-           class="form-control"
-           placeholder="Membership ID"
-           value="MBR-9876"
-           readonly
-           required
-           >
-  </div>
-
-  <!-- Active / Inactive Registration -->
-<div class="col-md-6 col-lg-4">
-  <label for="activeStatus" class="form-label">Active / Inactive Registration</label>
-  <input type="text" id="activeStatus" name="activeStatus"
-         class="form-control"
-         placeholder="Active or Inactive"
-         value="Active"
-         readonly
-         required
-        >
-</div>
-
-
-  <!-- Total Renewal -->
-  <div class="col-md-6 col-lg-4">
-    <label for="totalRenewal" class="form-label">Total Renewal</label>
-    <input type="number" id="totalRenewal" name="totalRenewal"
-           class="form-control"
-           placeholder="Total Renewal"
-           value="0"
-           readonly
-           required
-           >
-  </div>
-        
-
-        
-
-      </div>
-
-      <!-- Purpose -->
-
-      
-     
-
-      
-    </form>
-    </div>
-
-
-    <div class="tab-pane fade" id="subscription">
-       <div class="table-container2">
-                
-
-                <!-- Bootstrap Responsive Table -->
-                <div class="table-responsive">
-                    <table class="table table-hover table-1">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 80px;">
-                                    <input type="checkbox" id="selectAll" class="form-check-input">
-                                    <button class="sl-no-btn">SI.No</button>
-                                </th>
-                                <th scope="col">Payment Reference</th>
-                                <th scope="col">Subscription Plan</th>
-                                <th scope="col">Subscription Date</th>
-                                <th scope="col">Amount Date</th>
-                                <th scope="col">Expiry Date</th>
-                                <th scope="col" style="width: 80px;">
-                                    Status
-                                    <div class="dropdown d-inline">
-                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fi fi-rr-menu-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
-                                                    <i class="fi fi-rr-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-inactive">Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-inactive">Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-inactive">Inactive</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>1 Day - 10 SAR (All Ages)</td>
-                                <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td>05/09/2025</td>
-                                <td><span class="status-badge status-active">Active</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Right: Action Buttons -->
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sub">Subscribe</button>
+                        <button type="button" class="btn btn-print">Print Card</button>
+                        <button type="button" id="editBtn" class="btn btn-edit">Edit</button>
+                        <button type="button" class="btn btn-issue">Issue Duplicate Card</button>
+                    </div>
                 </div>
-                <!-- Pagination Section -->
-                <div class="pagination-section">
-                    <div class="table-footer-page d-flex gap-3 align-items-center">
-                    <div class="items-per-page">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Items per page</span>
-                        <select class="items-select">
-                            <option value="10" selected>10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="member">
+                        <form id="Member-details-form">
+
+                            <div class="row g-3">
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="fullName" class="form-label">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" class="form-control"
+                                        placeholder="Full Name" value="شموخ صالح ال هرمس" readonly data-editable="true"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        placeholder="Email@example.com" value="am_shmook@hotmail.com" readonly
+                                        data-editable="true" required>
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" class="form-control"
+                                        placeholder="+91 0554437892" value="0554437892" readonly data-editable="true"
+                                        required>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="guardianNumber" class="form-label">Guardian Number</label>
+                                    <input type="tel" id="guardianNumber" name="guardianNumber" class="form-control"
+                                        placeholder="+91 0554437892" value="0554437892" readonly data-editable="true"
+                                        required>
+                                </div>
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="gender" class="form-label">Gender</label>
+                                    <select id="gender" name="gender" class="selectpicker" required disabled
+                                        data-editable="true">
+                                        <option value="">Select</option>
+                                        <option value="Male" selected>Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="idNumber" class="form-label">ID Number</label>
+                                    <input type="text" id="idNumber" name="idNumber" class="form-control"
+                                        placeholder="ID Number" required>
+                                </div>
+                                <!-- Date of Registration -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="dateofbirth" class="form-label">Date of Registration</label>
+                                    <input type="date" id="dateofbirth" name="dateofbirth" class="form-control"
+                                        value="2024-01-10" readonly required>
+                                </div>
+
+                                <!-- Nationality -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="nationality" class="form-label">Nationality</label>
+                                    <input type="text" id="nationality" name="nationality" class="form-control"
+                                        placeholder="Nationality" value="Indian" readonly required>
+                                </div>
+                                <!-- City -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="city" class="form-label">City</label>
+                                    <input type="text" id="city" name="city" class="form-control" placeholder="City"
+                                        value="Bengaluru" readonly required>
+                                </div>
+
+                                <!-- Preferred Location -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="preferredLocation" class="form-label">Preferred Location</label>
+                                    <input type="text" id="preferredLocation" name="preferredLocation"
+                                        class="form-control" placeholder="Preferred Location" value="Koramangala"
+                                        readonly required>
+                                </div>
+
+                                <!-- Vaccinated -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="vaccinated" class="form-label">Vaccinated</label>
+                                    <input type="text" id="vaccinated" name="vaccinated" class="form-control"
+                                        placeholder="select" value="Yes" readonly required>
+
+                                </div>
+                                <!-- Registration Purpose -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="registrationPurpose" class="form-label">Registration Purpose</label>
+                                    <input type="text" id="registrationPurpose" name="registrationPurpose"
+                                        class="form-control" placeholder="Purpose" value="Gym Membership" readonly
+                                        required>
+                                </div>
+
+                                <!-- Desired Activities -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="desiredActivities" class="form-label">Desired Activities</label>
+                                    <input type="text" id="desiredActivities" name="desiredActivities"
+                                        class="form-control" placeholder="Desired Activities" value="Yoga, Swimming"
+                                        readonly required>
+                                </div>
+
+                                <!-- Membership ID -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="membershipId" class="form-label">Membership ID</label>
+                                    <input type="text" id="membershipId" name="membershipId" class="form-control"
+                                        placeholder="Membership ID" value="MBR-9876" readonly required>
+                                </div>
+
+                                <!-- Active / Inactive Registration -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="activeStatus" class="form-label">Active / Inactive Registration</label>
+                                    <input type="text" id="activeStatus" name="activeStatus" class="form-control"
+                                        placeholder="Active or Inactive" value="Active" readonly required>
+                                </div>
+
+
+                                <!-- Total Renewal -->
+                                <div class="col-md-6 col-lg-4">
+                                    <label for="totalRenewal" class="form-label">Total Renewal</label>
+                                    <input type="number" id="totalRenewal" name="totalRenewal" class="form-control"
+                                        placeholder="Total Renewal" value="0" readonly required>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <!-- Purpose -->
+
+
+
+
+
+                        </form>
                     </div>
 
-                    <div class="pagination-info">
-                        1-10 of 200 items
-                    </div>
-                    </div>
+
+                    <div class="tab-pane fade" id="subscription">
+                        <div class="table-container2">
 
 
-                    <div class="pagination-controls">
-                        <select class="items-select">
-                            <option value="1" selected>1</option>
-                            <option value="5">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <div class="page-info"> of 44 pages</div>
-                        <div class="pagination-nav">
-                            <button class="pagination-btn" disabled>❮</button>
-                            <button class="pagination-btn">❯</button>
+                            <!-- Bootstrap Responsive Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover table-1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 80px;">
+                                                <input type="checkbox" id="selectAll" class="form-check-input">
+                                                <button class="sl-no-btn">SI.No</button>
+                                            </th>
+                                            <th scope="col">Payment Reference</th>
+                                            <th scope="col">Subscription Plan</th>
+                                            <th scope="col">Subscription Date</th>
+                                            <th scope="col">Amount Date</th>
+                                            <th scope="col">Expiry Date</th>
+                                            <th scope="col" style="width: 80px;">
+                                                Status
+                                                <div class="dropdown d-inline">
+                                                    <a href="#" class="action-dot" id="actionsDropdown"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fi fi-rr-menu-dots-vertical"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-end"
+                                                        aria-labelledby="actionsDropdown">
+                                                        <li>
+                                                            <a class="dropdown-item text-danger" href="#"
+                                                                id="deleteRow">
+                                                                <i class="fi fi-rr-trash me-2"></i> Delete
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-inactive">Inactive</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>1 Day - 10 SAR (All Ages)</td>
+                                            <td>1 Month - SAR 60 (Parent & 2 Kids)</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td>05/09/2025</td>
+                                            <td><span class="status-badge status-active">Active</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="table-footer-page d-flex gap-3 align-items-center">
+                                    <div class="items-per-page">
+                                        <i class="bi bi-chevron-down"></i>
+                                        <span>Items per page</span>
+                                        <select class="items-select">
+                                            <option value="10" selected>10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="pagination-info">
+                                        1-10 of 200 items
+                                    </div>
+                                </div>
+
+
+                                <div class="pagination-controls">
+                                    <select class="items-select">
+                                        <option value="1" selected>1</option>
+                                        <option value="5">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <div class="page-info"> of 44 pages</div>
+                                    <div class="pagination-nav">
+                                        <button class="pagination-btn" disabled>❮</button>
+                                        <button class="pagination-btn">❯</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="card">
+                        <div class="table-container2">
+
+
+                            <!-- Bootstrap Responsive Table -->
+                            <div class="table-responsive">
+                                <table class="table table-hover table-2">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="width: 80px;">
+                                                <input type="checkbox" id="selectAll2" class="form-check-input">
+                                                <button class="sl-no-btn">SI.No</button>
+                                            </th>
+                                            <th scope="col">Issued By</th>
+                                            <th scope="col">Issued On</th>
+                                            <th scope="col">Amount</th>
+
+                                            <th scope="col" style="width: 80px;">
+                                                Payment Type
+                                                <div class="dropdown d-inline">
+                                                    <a href="#" class="action-dot" id="actionsDropdown"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fi fi-rr-menu-dots-vertical"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-end"
+                                                        aria-labelledby="actionsDropdown">
+                                                        <li>
+                                                            <a class="dropdown-item text-danger" href="#"
+                                                                id="deleteRow">
+                                                                <i class="fi fi-rr-trash me-2"></i> Delete
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #01</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #02</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #03</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #04</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #05</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #06</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #07</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #08</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #09</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="checkbox" class="form-check-input row-check"> #10</td>
+                                            <td>Agesz roy</td>
+
+                                            <td>05/09/2025</td>
+                                            <td>1000 SAR</td>
+                                            <td>Cash</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination Section -->
+                            <div class="pagination-section">
+                                <div class="table-footer-page d-flex gap-3 align-items-center">
+                                    <div class="items-per-page">
+                                        <i class="bi bi-chevron-down"></i>
+                                        <span>Items per page</span>
+                                        <select class="items-select">
+                                            <option value="10" selected>10</option>
+                                            <option value="25">25</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="pagination-info">
+                                        1-10 of 200 items
+                                    </div>
+                                </div>
+
+
+                                <div class="pagination-controls">
+                                    <select class="items-select">
+                                        <option value="1" selected>1</option>
+                                        <option value="5">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                    </select>
+                                    <div class="page-info"> of 44 pages</div>
+                                    <div class="pagination-nav">
+                                        <button class="pagination-btn" disabled>❮</button>
+                                        <button class="pagination-btn">❯</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-    </div>
-    <div class="tab-pane fade" id="card">
-       <div class="table-container2">
-                
-
-                <!-- Bootstrap Responsive Table -->
-                <div class="table-responsive">
-                    <table class="table table-hover table-2">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 80px;">
-                                    <input type="checkbox" id="selectAll2" class="form-check-input">
-                                    <button class="sl-no-btn">SI.No</button>
-                                </th>
-                                <th scope="col">Issued By</th>
-                                <th scope="col">Issued On</th>
-                                <th scope="col">Amount</th>
-                                
-                                <th scope="col" style="width: 80px;">
-                                    Payment Type
-                                    <div class="dropdown d-inline">
-                                        <a href="#" class="action-dot" id="actionsDropdown" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="fi fi-rr-menu-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown">
-                                            <li>
-                                                <a class="dropdown-item text-danger" href="#" id="deleteRow">
-                                                    <i class="fi fi-rr-trash me-2"></i> Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #01</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #02</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #03</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #04</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #05</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                           <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #06</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #07</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #08</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                           <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #09</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                           <tr>
-                                <td><input type="checkbox" class="form-check-input row-check"> #10</td>
-                                <td>Agesz roy</td>
-                                
-                                <td>05/09/2025</td>
-                                <td>1000 SAR</td>
-                                <td>Cash</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Pagination Section -->
-                <div class="pagination-section">
-                    <div class="table-footer-page d-flex gap-3 align-items-center">
-                    <div class="items-per-page">
-                        <i class="bi bi-chevron-down"></i>
-                        <span>Items per page</span>
-                        <select class="items-select">
-                            <option value="10" selected>10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-
-                    <div class="pagination-info">
-                        1-10 of 200 items
-                    </div>
-                    </div>
 
 
-                    <div class="pagination-controls">
-                        <select class="items-select">
-                            <option value="1" selected>1</option>
-                            <option value="5">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                        </select>
-                        <div class="page-info"> of 44 pages</div>
-                        <div class="pagination-nav">
-                            <button class="pagination-btn" disabled>❮</button>
-                            <button class="pagination-btn">❯</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-</div>
-
-      
             </div>
 
-             <div class="table-container duplicate-card" style="display:none;">
+            <div class="table-container duplicate-card" style="display:none;">
                 <div class="d-flex justify-content-between align-items-center">
                     <h1 class="form-title">Change Password</h1>
-                    <button type="submit" class="btn-add-new update-btn"><span>Add Payment & Print </span><i class="fi fi-rr-plus"></i></button>
+                    <button type="submit" class="btn-add-new update-btn"><span>Add Payment & Print </span><i
+                            class="fi fi-rr-plus"></i></button>
                 </div>
 
-                      <form id="registrationForm">
+                <form id="registrationForm">
 
-      <div class="row g-3">
-        
+                    <div class="row g-3">
 
-        <div class="col-md-7 col-lg-7 col-12">
-          <label for="amount" class="form-label">Amount</label>
-          <input type="text" id="amount" name="amount" class="form-control" placeholder="Amount" value="500" required>
-        </div>
-        
 
-       
+                        <div class="col-md-7 col-lg-7 col-12">
+                            <label for="amount" class="form-label">Amount</label>
+                            <input type="text" id="amount" name="amount" class="form-control" placeholder="Amount"
+                                value="500" required>
+                        </div>
 
-        
 
-        
 
-        <div class="col-md-7 col-lg-7 col-12">
-          <label for="PaymentMethod" class="form-label">Payment Method</label>
-         
-  <select class="selectpicker" data-live-search="true" title="-- Please Select --">
-  <option data-tokens="cash">Cash</option>
-    <option data-tokens="credit card">Credit Card</option>
-    <option data-tokens="debit card">Debit Card</option>
-    <option data-tokens="bank transfer">Bank Transfer</option>
-    <option data-tokens="upi googlepay paytm">UPI / Mobile Payment</option>
-    <option data-tokens="paypal">PayPal</option>
-    <option data-tokens="cheque">Cheque</option>
-    <option data-tokens="giftcard">Gift Card / Voucher</option>
-</select>
-        </div>
 
-        
 
-       
 
-     
 
-</div>
-     
 
-      
-    </form>
-             </div>
+                        <div class="col-md-7 col-lg-7 col-12">
+                            <label for="PaymentMethod" class="form-label">Payment Method</label>
 
-            
+                            <select class="selectpicker" data-live-search="true" title="-- Please Select --">
+                                <option data-tokens="cash">Cash</option>
+                                <option data-tokens="credit card">Credit Card</option>
+                                <option data-tokens="debit card">Debit Card</option>
+                                <option data-tokens="bank transfer">Bank Transfer</option>
+                                <option data-tokens="upi googlepay paytm">UPI / Mobile Payment</option>
+                                <option data-tokens="paypal">PayPal</option>
+                                <option data-tokens="cheque">Cheque</option>
+                                <option data-tokens="giftcard">Gift Card / Voucher</option>
+                            </select>
+                        </div>
+
+
+
+
+
+
+
+                    </div>
+
+
+
+                </form>
+            </div>
+
+
         </div>
 
     </div>
@@ -800,30 +769,30 @@
 
 
     <!-- jQuery (required by Bootstrap Select) -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Bootstrap 5 JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Bootstrap Select JS (compatible with Bootstrap 5) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
+    <!-- Bootstrap Select JS (compatible with Bootstrap 5) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/js/bootstrap-select.min.js"></script>
 
-  <!-- Intl Tel Input JS (optional) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-  <!-- Flatpickr JS -->
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- Intl Tel Input JS (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-  <!-- Your custom JS -->
-  <script src="assets/js/common.js"></script>
-  <script src="assets/js/member-registration.js"></script>
-  <script src="assets/js/membership-details.js"></script>
-
-
+    <!-- Your custom JS -->
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/member-registration.js"></script>
+    <script src="assets/js/membership-details.js"></script>
 
 
 
 
- 
+
+
+
 
 
 
