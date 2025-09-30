@@ -2556,6 +2556,13 @@ font-size: 18px;
     color: #959FA8;
 }
 
+.btn-report:hover{
+    border: 1px solid #000000;
+   
+    box-shadow: none;
+    color: #000;
+}
+
 .plan-title{
     text-align: left;
 }
