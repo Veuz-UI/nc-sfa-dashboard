@@ -58,6 +58,13 @@
             .sidebar.show {
                 transform: translateX(0);
             }
+            
+        }
+
+        @media (max-width: 1199px){
+            .member-details .tab-edit{
+flex-direction: column;
+            }
         }
 
         /* Sidebar overlay for mobile */
