@@ -464,7 +464,7 @@
             /* min-height: calc(100vh - var(--topbar-height)); */
         }
 
-        .main-content.expanded {
+        .main-content.expanded,  .breadcrumb-bar.collapsed{
             margin-left: var(--sidebar-collapsed-width);
         }
 
@@ -1986,6 +1986,13 @@ width: 100%;
         }
         .dropdown-menu-end{
             transform: translate(0, 20px) !important;
+        }
+        .dropdown-item.active, .dropdown-item:active{
+            background-color: var(--primary-color);
+        }
+
+        .stat-chart .table td{
+            padding: 20px 10px;
         }
 
         /* Modal Container */

@@ -2,47 +2,58 @@
 
 // ===== SIDEBAR FUNCTIONALITY =====
 function toggleSidebar() {
-    const sidebar = document.getElementById('sidebar');
+    const sidebar     = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
-    const topbar = document.getElementById('topbar');
-    const overlay = document.getElementById('sidebarOverlay');
-    
+    const topbar      = document.getElementById('topbar');
+    const overlay     = document.getElementById('sidebarOverlay');
+    const breadcrumb  = document.querySelector('.breadcrumb-bar');
+
     if (window.innerWidth <= 991) {
-        // Mobile behavior
+        // ===== Mobile behavior =====
         sidebar?.classList.toggle('show');
         overlay?.classList.toggle('show');
     } else {
-        // Desktop behavior
+        // ===== Desktop behavior =====
         sidebar?.classList.toggle('collapsed');
         mainContent?.classList.toggle('expanded');
         topbar?.classList.toggle('expanded');
+
+        // ✅ Toggle breadcrumb collapsed class
+        if (sidebar.classList.contains('collapsed')) {
+            breadcrumb?.classList.add('collapsed');
+        } else {
+            breadcrumb?.classList.remove('collapsed');
+        }
     }
 }
 
+// ===== Close Sidebar for Mobile =====
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
-    
+
     sidebar?.classList.remove('show');
     overlay?.classList.remove('show');
 }
 
-// Handle window resize
+// ===== Handle Window Resize =====
 window.addEventListener('resize', function() {
-    const sidebar = document.getElementById('sidebar');
+    const sidebar     = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
-    const topbar = document.getElementById('topbar');
-    const overlay = document.getElementById('sidebarOverlay');
-    
+    const topbar      = document.getElementById('topbar');
+    const overlay     = document.getElementById('sidebarOverlay');
+    const breadcrumb  = document.querySelector('.breadcrumb-bar');
+
     if (window.innerWidth > 991) {
-        // Desktop mode - remove mobile classes
+        // Switch to desktop mode → remove mobile classes
         sidebar?.classList.remove('show');
         overlay?.classList.remove('show');
     } else {
-        // Mobile mode - reset desktop classes
+        // Switch to mobile mode → reset desktop classes
         sidebar?.classList.remove('collapsed');
         mainContent?.classList.remove('expanded');
         topbar?.classList.remove('expanded');
+        breadcrumb?.classList.remove('collapsed');
     }
 });
 
@@ -143,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
 
 
 // ===== CAMERA FUNCTIONALITY =====
